@@ -16,7 +16,7 @@ class CreateTestItemsTable extends Migration
         Schema::create('test_items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('specied_value');
+            $table->string('specified_value');
             $table->string('observed_value')->nullable();
             $table->timestamps();
         });

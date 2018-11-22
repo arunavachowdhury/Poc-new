@@ -39,7 +39,7 @@ class TestItemController extends Controller
         // dd($request);
         $rules = [
             'name' => 'required',
-            'specied_value' => 'required'
+            'specified_value' => 'required'
         ];
         $this->validate($request, $rules);
 

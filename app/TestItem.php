@@ -8,7 +8,7 @@ class TestItem extends Model
 {
     public $fillable = [
         'name',
-        'specied_value',
+        'specified_value',
         'observed_value'
     ];
     

@@ -111,7 +111,7 @@
                 // log
                 $.post("http://127.0.0.1:8000/api/testitem", {
                         name: itemName, 
-                        specied_value: specifiedValue  
+                        specified_value: specifiedValue  
                     },
                     function (data, status) {
                         // console.log(data);
