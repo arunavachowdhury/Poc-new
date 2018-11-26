@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Test;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -34,6 +35,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function tests()
+    {
+        return $this->belongsToMany(Test::class);
+    }
 
     /**
      * Tells if the user is a USER_APPLICATION_ADMIN type user

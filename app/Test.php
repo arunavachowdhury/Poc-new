@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\TestItemResult;
+use App\TestItem;
+use App\User;
 
 class Test extends Model
 {
@@ -23,5 +26,15 @@ class Test extends Model
     public function testItems()
     {
         return $this->belongsToMany(TestItem::class);
+    }
+
+    public function testitemresults()
+    {
+        return $this->belongsToMany(TestItemResult::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\TestOrder;
+use App\Test;
 
 class TestItem extends Model
 {
@@ -16,4 +18,11 @@ class TestItem extends Model
     {
         return $this->belongsToMany(TestOrder::class);
     }
+
+    public function tests()
+    {
+        return $this->belongsToMany(Test::class);
+    }
+
+    
 }
