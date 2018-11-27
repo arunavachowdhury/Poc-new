@@ -10,11 +10,7 @@ class TestItemResult extends Model
 {
     public function test()
     {
-        return $this->belongsToMany(Test::class);
+        return $this->belongsTo(Test::class);
     }
 
-    public function testreport()
-    {
-        return $this->belongsTo(TestReport::class);
-    }
 }

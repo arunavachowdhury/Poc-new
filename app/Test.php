@@ -30,7 +30,7 @@ class Test extends Model
 
     public function testitemresults()
     {
-        return $this->belongsToMany(TestItemResult::class);
+        return $this->hasMany(TestItemResult::class);
     }
 
     public function user()

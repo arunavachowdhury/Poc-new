@@ -8,6 +8,7 @@ use App\Test;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\TestReport;
 
 class TestReportController extends Controller
 {
@@ -16,35 +17,26 @@ class TestReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Test $testreport)
     {
         $query = DB::table('users_job')->where('user_id', Auth::user()->id)->get();
 
         $test = [];
 
         foreach ($query as $q) {
-            // $qq = [
-            //     'test_id' => $q->test_id
-            // ];
+            $qq = [
+                'test_id' => $q->test_id
+            ];
             array_push($test, $q->test_id);
         }
-        
-        $tests = [];
-
-        foreach ($test as $t) {
-            $query1 = DB::table('tests')->where('id', $t)->get()->toArray();
-            // $qq1 = [
-            //     'company_name' => $query1->company_name
-            // ];
-            // $tests[] = $query1;
-            array_push($tests, $query1);
-        }
-    dd($tests);
-
-        // $tests = Test::findOrFail($test);
-        // dd($tests);
-        // $test = Test::findOrFail($test);
+        $tests = Test::findOrFail($test);
         return view('testreport.index')->with(['tests'=> $tests]);
+            // $test = $testreport->user()->
+            // dd($testreport->user);
+        // if($testreport->user == Auth::user)
+        // {
+        //     return view('testreport.index')->with(['tests'=> $testreport]);
+        // }
     }
 
     /**
