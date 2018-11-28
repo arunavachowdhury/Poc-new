@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public $table = 'users';
+    protected $table = 'users';
 
     const USER_OFFICE_EXECUTIVE = 'officeexecutive';
     const USER_OFFICE_ADMIN = 'office_admin';

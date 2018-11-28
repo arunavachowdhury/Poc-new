@@ -9,7 +9,9 @@ use App\User;
 
 class Test extends Model
 {
-    public $fillable = [
+    protected $table = 'tests';
+
+    protected $fillable = [
         'date_of_receipt',
         'sample_code_no',
         'company_name',

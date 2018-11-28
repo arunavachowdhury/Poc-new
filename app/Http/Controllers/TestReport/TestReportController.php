@@ -17,9 +17,9 @@ class TestReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Test $testreport)
+    public function index()
     {
-        $query = DB::table('users_job')->where('user_id', Auth::user()->id)->get();
+        $query = DB::table('test_user')->where('user_id', Auth::user()->id)->get();
 
         $test = [];
 
@@ -31,12 +31,9 @@ class TestReportController extends Controller
         }
         $tests = Test::findOrFail($test);
         return view('testreport.index')->with(['tests'=> $tests]);
-            // $test = $testreport->user()->
-            // dd($testreport->user);
-        // if($testreport->user == Auth::user)
-        // {
-        //     return view('testreport.index')->with(['tests'=> $testreport]);
-        // }
+
+        // $test = Auth::user()->whereHas('tests')->with('tests')->get()->pluck('tests')->collapse()->unique('id')->values();
+        // return view('testreport.index')->with(['tests'=> $test]);
     }
 
     /**

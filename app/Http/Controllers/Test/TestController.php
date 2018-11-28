@@ -158,7 +158,7 @@ class TestController extends Controller
         $test = Test::findOrFail($id);
         $data = $request->user_id;
         $user = Auth::user()->id;
-        $jobs = DB::table('users_job')->insert([
+        $jobs = DB::table('test_user')->insert([
             'test_id' => $test->id,
             'user_id' => $data,
             'provider_id' => $user]);

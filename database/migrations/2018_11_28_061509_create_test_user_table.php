@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersJobTable extends Migration
+class CreateTestUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateUsersJobTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_job', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+        Schema::create('test_user', function (Blueprint $table) {
             $table->integer('test_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('provider_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('test_id')->references('id')->on('tests');
+            $table->foreign('user_id')->references('id')->on('users');
             
         });
     }
@@ -31,7 +31,7 @@ class CreateUsersJobTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_test');
+        Schema::dropIfExists('test_user');
 
     }
 }
