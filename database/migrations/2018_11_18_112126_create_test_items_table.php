@@ -15,10 +15,13 @@ class CreateTestItemsTable extends Migration
     {
         Schema::create('test_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('test_id')->unsigned();
             $table->string('name');
             $table->string('specified_value');
             $table->string('observed_value')->nullable();
             $table->timestamps();
+
+            $table->foreign('test_id')->references('id')->on('tests');
         });
     }
 

@@ -4,73 +4,6 @@
 
 @section('content')
 
-<div class="container">
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add remarks</h4>
-                    <button class="btn" type="button" class="close" data-dismiss="modal">&times;</button>
-                    <!-- <h4 class="modal-title">Modal Header</h4> -->
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('review.update', ['id' => $review_id])}}" method="post">
-                        {!! csrf_field() !!}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Remarks</label>
-                                    <textarea name="remarks" rows="3" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <input type="hidden" name="_method" value="put">
-                            <input type="hidden" name="status" value="in_progress">
-                        </div>
-                        <button type="submit" class="btn">Submit</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Cancel modal -->
-    <div class="modal fade" id="myModal1" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Please add a remark before cancelling application</h4>
-                    <button class="btn" type="button" class="close" data-dismiss="modal">&times;</button>
-                    <!-- <h4 class="modal-title">Modal Header</h4> -->
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('review.update', ['id' => $review_id])}}" method="post">
-                        {!! csrf_field() !!}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Remarks</label>
-                                    <textarea name="remarks" rows="3" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <input type="hidden" name="_method" value="put">
-                            <input type="hidden" name="status" value="rejected">
-                        </div>
-                        <button type="submit" class="btn">Submit</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 <div style="width: calc(95% - 220px); position:relative; border:1px solid #e2e2e2; padding:30px; margin-left: 20px">
     Status: 
@@ -187,13 +120,4 @@
     </div>
     @endif
 
-    <div class="modal-footer" style="position: absolute; top: 90px; left: calc(100% + 15px);">
-        <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Add remarks</button>
-    </div>
-
-    <div class="modal-footer" style="position: absolute; top: 165px; left: calc(100% + 15px);">
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">Reject application</button>
-    </div>
-    <div style="height:100px"></div>
-</div>
 @endsection

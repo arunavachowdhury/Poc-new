@@ -15,6 +15,7 @@ class CreateTestsTable extends Migration
     {
         Schema::create('tests', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('review_id')->unsigned();
             $table->date('date_of_receipt');
             $table->integer('sample_code_no')->unsigned();
             $table->string('company_name');
@@ -27,6 +28,8 @@ class CreateTestsTable extends Migration
             $table->string('payment_details');
             $table->text('remarks')->nullable();
             $table->timestamps();
+
+            $table->foreign('review_id')->references('id')->on('reviews');
         });
     }
 

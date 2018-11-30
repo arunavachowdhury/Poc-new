@@ -67,8 +67,8 @@ class TestReportController extends Controller
     {
         
     $test = Test::findOrFail($id);
-        // dd($test);
-    return view('testreport.show')->with(['test'=> $test]);
+    $testItem = $test->testItems;
+    return view('testreport.show')->with(['test'=> $test, 'testItems' => $testItem]);
         
         
         

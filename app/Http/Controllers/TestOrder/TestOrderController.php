@@ -248,6 +248,6 @@ class TestOrderController extends Controller
             'testorder_id' => $id,
         ]);
 
-        return redirect()->route('review.show', ['id' => $review->id]);
+        return redirect()->route('register.test', ['id' => $review->id]);
     }
 }

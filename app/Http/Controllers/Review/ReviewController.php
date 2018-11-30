@@ -98,7 +98,7 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->back();
+        return redirect()->route('review.show', ['id'=> $review->id]);
     }
 
     /**
@@ -110,5 +110,18 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function registerTest($id)
+    {
+        $review = Review::findOrFail($id);
+        $order = $review->testorder;
+        $orderTestItems = $review->testorder->orderTestItems;
+
+        // return $orderTestItems;
+        
+        return view('test.create')->with(['order' => $order,
+                                         'testOrderItems' => $orderTestItems,
+                                         'review' => $review]);
     }
 }

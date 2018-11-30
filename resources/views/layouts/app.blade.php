@@ -103,20 +103,19 @@
                         $("<label><input checked type=\"checkbox\" value=\""+data.data.id+"\" name=\"order_test_items_array[]\"/><span>"+data.data.name+"</span</label>").appendTo("#addOrderTestItem");
                 });
             });
-            $("#addTestItemButton").click(function () {
-                // console.log($('meta[name="csrf-token"]').attr('content'));
-                var itemName = $("#itemName").val();
-                var specifiedValue = $("#specifiedValue").val();
-                // alert(myValue);
-                // log
-                $.post("http://127.0.0.1:8000/api/testitem", {
-                        name: itemName, 
-                        specified_value: specifiedValue  
-                    },
-                    function (data, status) {
-                        // console.log(data);
-                        $("<label><input checked type=\"checkbox\" value=\""+data.data.id+"\" name=\"test_items_array[]\"/><span>"+data.data.name+"</span</label>").appendTo("#addTestItem");
-                });
+            // $("#addTestItemButton").click(function () {
+            //     var itemName = $("#itemName").val();
+            //     var specifiedValue = $("#specifiedValue").val();
+            //     $.post("http://127.0.0.1:8000/api/testitem", {
+            //             name: itemName, 
+            //             specified_value: specifiedValue  
+            //         },
+            //         function (data, status) {
+            //             $("<label><input checked type=\"checkbox\" value=\""+data.data.id+"\" name=\"test_items_array[]\"/><span>"+data.data.name+"</span</label>").appendTo("#addTestItem");
+            //     });
+
+
+
                 // $.ajax({
                 //     type: "POST",
                 //     url: "http://127.0.0.1:8000/api/testitem",

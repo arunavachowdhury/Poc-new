@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\TestOrder;
+use App\Test;
 
 class Review extends Model
 {
@@ -18,5 +20,10 @@ class Review extends Model
     public function testorder()
     {
         return $this->belongsTo(TestOrder::class);
+    }
+
+    public function test()
+    {
+        return $this->belongsTo(Test::class);
     }
 }

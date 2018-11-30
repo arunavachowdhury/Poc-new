@@ -39,10 +39,12 @@ Route::get('/testorderreview', 'TestOrder\TestOrderController@index')->name('tes
 // review resource
 
 Route::resource('review', 'Review\ReviewController')->middleware('auth');
+Route::get('registertest/{id}', 'Review\ReviewController@registerTest')->name('register.test')->middleware('auth');
 
 // test
 Route::resource('test', 'Test\TestController')->middleware('auth');
-Route::get('registertest/{id}', 'Test\TestController@registerTest')->name('register.test')->middleware('auth');
+// Route::get('registertest/{id}', 'Test\TestController@registerTest')->name('register.test')->middleware('auth');allbat
+
 
 Route::post('/joballocate/{id}', 'Test\TestController@joballocate')->name('job.allocate');
 Route::get('/testreport', 'TestReport\TestReportController@index')->name('test.report');

@@ -10,19 +10,15 @@
                 <tbody>
                     <tr>
                         <td>Sample Code no.</td>
-                        <td>{{$test->sample_code_no}}</td>
+                        <td>01</td>
                     </tr>
                     <tr>
                         <td>Sample description</td>
-                        <td>{{$test->sample_description}}</td>
+                        <td>Water pollution is the ...</td>
                     </tr>
                     <tr>
                         <td>Testing required</td>
-                        <td>
-                        @foreach($testItems as $testItem)
-                            {{$testItem->name}}
-                        @endforeach
-                        </td>
+                        <td>Arsenic, Iron</td>
                     </tr>
                     <tr>
                         <td>Specification</td>
@@ -95,7 +91,7 @@
                 <td>Arsenic</td>
                 <td>ppb(parts per billion)</td>
                 <td>13</td>
-                <td></td>
+                <td><div class="form-group"><input type="text" class=""></div></td>
                 <td>Marsh test</td>
             </tr>
             <tr>
@@ -103,16 +99,18 @@
                 <td>Iron</td>
                 <td>mg/L</td>
                 <td>0.3</td>
-                <td></td>
+                <td><div class="form-group"><input type="text" class=""></div></td>
                 <td>Strips test</td>
             </tr>
         </tbody>
     </table>
+    <button type="submit" class="btn btn-primary pull-right" style="margin-right:15px">Save report</button>
+    <br><br>
 
     <div style="position: absolute; top: 30px; left: calc(100% + 10px);">
         <a class="btn btn-success" href="" style="padding: 12px 20px">Generate internal report(PDF)</a>
-        <a class="btn btn-success" href="" style="padding: 12px 20px">Fillup test values</a>
-        <a class="btn btn-success" href="" style="padding: 12px 20px">Generate report</a>
+        <!-- <a class="btn btn-success" href="" style="padding: 12px 20px">Fillup test values</a> -->
+        <!-- <a class="btn btn-success" href="" style="padding: 12px 20px">Update information</a> -->
     </div>
 </div>
 </table>

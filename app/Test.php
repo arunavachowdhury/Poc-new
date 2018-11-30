@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\TestItemResult;
 use App\TestItem;
 use App\User;
+use App\Review;
 
 class Test extends Model
 {
@@ -24,6 +25,11 @@ class Test extends Model
         'payment_details',
         'remarks',
     ];
+
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
 
     public function testItems()
     {

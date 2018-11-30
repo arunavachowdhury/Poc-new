@@ -4,9 +4,7 @@
 
 @section('content')
 
-<div class="container">
 
-</div>
 
 <div style="width: calc(95% - 220px); position:relative; border:1px solid #e2e2e2; padding:30px; margin-left: 20px">
 
