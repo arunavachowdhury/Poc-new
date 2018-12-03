@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-// use Symfony\Component\Routing\Annotation\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/ordertestitem', 'OrderTestItem\OrderTestItemController@store');
-Route::post('/testitem', 'Testitem\TestItemController@store');
-
-// Route::resource('testitem', 'TestItem\TestItemController');
+Route::resource('sample', 'Api\SampleController')->only(['show']);
