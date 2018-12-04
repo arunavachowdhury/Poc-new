@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Sample;
 use App\Uom;
 use App\TestItem;
+use Illuminate\Support\Facades\DB;
 
 class TestItemController extends Controller
 {
@@ -104,5 +105,32 @@ class TestItemController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * gives test items for sample and is_standards
+     * @param Request $request
+     * 
+     * @return array
+     */
+    public function getTestItemsQuery(Request $request) {
+        $rules = [
+            'sample_id' => 'required',
+            'isstandard_id' => 'required'
+        ];
+        $this->validate($request, $rules);
+
+        if($request->has('sample_id') && $request->has('isstandard_id'))
+        {
+            $testItems = DB::table('test_items')->where('sample_id', $request->sample_id)->where('isstandard_id', $request->isstandard_id)->get(); 
+            
+            if(empty($testItems)) {
+                return response()->json(['data' => '', 'code' => 404]);
+            } else {
+                return response()->json(['data' => $testItems]);
+            }
+        } else {
+            return response()->json(['data' => '', 'code' => 404]); 
+        } 
     }
 }

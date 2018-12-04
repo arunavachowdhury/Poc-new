@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ISStandard;
-use App\Sample;
+use App\Customer;
 
-class ISStandardController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class ISStandardController extends Controller
      */
     public function index()
     {
-        return view('isstandard.index')->with(['samples' => ISStandard::all()]);
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class ISStandardController extends Controller
      */
     public function create()
     {
-        return view('isstandard.create')->with(['samples' => Sample::all()]);
+        return view('customer.create');
     }
 
     /**
@@ -36,20 +35,20 @@ class ISStandardController extends Controller
      */
     public function store(Request $request)
     {
-        $rule = [
-            'value' => 'required',
-            'sample_id' => 'required'
+        // dd($request);
+        $rules = [
+            'name' => 'required',
+            'address' => 'required',
+            'phone_number' => 'required'
         ];
 
-        $this->validate($request, $rule);
+        $this->validate($request, $rules);
 
-        $isstandard = ISStandard::create([
-            'value' => $request->value,
-            'sample_id' => $request->sample_id
-        ]);
-        
-        // dd($isstandard);
-        return redirect()->route('sample.show', ['id' => $isstandard->sample_id]);
+        $data = $request->all();
+        $customer = Customer::create($data);
+
+        return redirect()->route('customer.show', ['id'=> $customer->id]);
+
     }
 
     /**
@@ -60,7 +59,8 @@ class ISStandardController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        return view('customer.show')->with('customer', $customer);
     }
 
     /**

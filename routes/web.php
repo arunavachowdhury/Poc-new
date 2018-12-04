@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::resource('sample', 'SampleController');
 Route::resource('isstandard', 'ISStandardController');
 Route::resource('testitem', 'TestItemController');
+Route::resource('customer', 'CustomerController');
+Route::resource('test', 'TestController');
