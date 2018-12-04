@@ -20,7 +20,7 @@
       <tr>
         <th>Test Item</th>
         <th>Unit of measurment</th>
-        <th>Specified value</th>
+        <th>Specified value range</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
         <tr>
             <td>{{$testItem->name}}</td>
             <td>{{$testItem->uom->unit}}</td>
-            <td>{{$testItem->specified_value}}</td>
+            <td>{{$testItem->specified_range_from}} {{$testItem->uom->unit}} - {{$testItem->specified_range_to}} {{$testItem->uom->unit}}</td>
         </tr>
         @endforeach
     </tbody>

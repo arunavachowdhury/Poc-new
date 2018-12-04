@@ -94,7 +94,7 @@
         var is_standard_provided;
         var sample_id = '';
         var is_standard_id = '';
-        $("#sample_id").change(function () {
+        $("#sample_id").on('change click',function () {
             var value = $(this).val();
             sample_id = value;
             sample_provided = true;
@@ -127,7 +127,7 @@
             });
         });
 
-        $("#isstandard_id").change(function () {
+        $("#isstandard_id").on('change click', function () {
             var value = $(this).val();
             is_standard_provided = true;
             is_standard_id = value;

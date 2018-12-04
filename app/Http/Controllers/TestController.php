@@ -49,16 +49,9 @@ class TestController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $test = Test::create([
-            'customer_id'=> $request->customer_id,
-            'sample_id'=> $request->sample_id,
-            'isstandard_id'=> $request->isstandard_id,
-            'sample_received_on'=> $request->sample_received_on,
-            'sample_reference_no'=> $request->sample_reference_no,
-            'date_of_disposal'=> $request->date_of_disposal,
-            'payment_details'=> $request->payment_details,
-            'remarks'=> $request->remarks
-        ]);
+        $data = $request->all();
+
+        $test = Test::create($data);
         
         // $testItems = DB::table('jobs');
 
@@ -68,7 +61,8 @@ class TestController extends Controller
             $jobs = Job::create([
                 'sample_id' => $test->sample_id,
                 'test_item_id' => $test_item,
-                'specified_value' => $testItem->specified_value,
+                'specified_range_from' => $testItem->specified_range_from,
+                'specified_range_to' => $testItem->specified_range_to,
                 'is_new' => $testItem->is_new
             ]);
             // $jobs->test()->associate($test);

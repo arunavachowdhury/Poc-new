@@ -18,7 +18,8 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->integer('sample_id')->unsigned();
             $table->integer('test_item_id')->unsigned();
-            $table->float('specified_value');
+            $table->string('specified_range_from');
+            $table->string('specified_range_to');
             $table->float('observed_value')->nullable();
             $table->string('lab_id')->nullable();
             $table->string('is_new');

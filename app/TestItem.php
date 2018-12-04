@@ -11,7 +11,8 @@ class TestItem extends Model
         'sample_id',
         'isstandard_id',
         'uom_id',
-        'specified_value',
+        'specified_range_from',
+        'specified_range_to',
         'description'
     ];
 

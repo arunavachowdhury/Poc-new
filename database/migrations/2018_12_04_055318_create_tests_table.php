@@ -19,6 +19,7 @@ class CreateTestsTable extends Migration
             $table->integer('sample_id')->unsigned();
             $table->date('sample_received_on');
             $table->date('date_of_disposal')->nullable();
+            $table->string('sample_reference_no');
             $table->string('payment_details')->nullable();
             $table->string('remarks')->nullable();
             $table->string('status')->default('Draft');
