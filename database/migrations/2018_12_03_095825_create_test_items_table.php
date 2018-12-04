@@ -19,7 +19,8 @@ class CreateTestItemsTable extends Migration
             $table->integer('sample_id')->unsigned();
             $table->integer('isstandard_id')->unsigned();
             $table->integer('uom_id')->unsigned();
-            $table->float('specified_value');
+            $table->string('specified_range_from');
+            $table->string('specified_range_to');
             $table->text('description');
             $table->string('is_new')->default(0);
             $table->timestamps();

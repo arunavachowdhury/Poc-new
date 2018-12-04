@@ -87,8 +87,8 @@ class TestController extends Controller
     public function show($id)
     {
         $test = Test::findOrFail($id);
-        dd($test);
-        $testItems = $test->jobs;
+
+        
         // dd($testItems);
     }
 
