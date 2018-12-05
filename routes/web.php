@@ -14,9 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard', function () {
+    return view('includes.dashboard');
+})->middleware('auth');
 
 Route::resource('sample', 'SampleController');
 Route::resource('isstandard', 'ISStandardController');
 Route::resource('testitem', 'TestItemController');
 Route::resource('customer', 'CustomerController');
 Route::resource('test', 'TestController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
