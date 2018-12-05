@@ -24,6 +24,9 @@ Route::resource('isstandard', 'ISStandardController')->middleware(['admin', 'dir
 Route::resource('testitem', 'TestItemController')->middleware(['admin', 'director']);
 Route::resource('customer', 'CustomerController')->middleware('auth');
 Route::resource('test', 'TestController')->middleware('auth');
+Route::resource('lab', 'LabController');
+Route::post('lab/user/allocate/{id}', 'LabUserController@allocateUser')->name('allocate.user');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

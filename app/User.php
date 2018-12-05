@@ -54,5 +54,13 @@ class User extends Authenticatable
         return $this->usertype == User::USER_DIRECTOR;
     }
 
+    public function isUserTechnician()
+    {
+        return $this->usertype == User::USER_TECHNICIAN;
+    }
 
+    public function labs()
+    {
+        return $this->belongsToMany(Lab::class);
+    }
 }
