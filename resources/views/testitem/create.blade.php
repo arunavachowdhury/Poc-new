@@ -82,9 +82,9 @@
                         content += '<option value="'+value.id+'" >'+value.value+'</option>'
                     });
                     
-                    // console.log(content);
+                    console.log(content);
                     
-                    $( "#isstandard_id" ).html( content );
+                    // $( "#isstandard_id" ).html( content );
                     
                 });
             });

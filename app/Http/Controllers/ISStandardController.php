@@ -48,7 +48,7 @@ class ISStandardController extends Controller
             'sample_id' => $request->sample_id
         ]);
         
-        dd($isstandard);
+        // dd($isstandard);
         return redirect()->route('sample.show', ['id' => $isstandard->sample_id]);
     }
 
