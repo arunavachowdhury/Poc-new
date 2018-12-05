@@ -73,9 +73,9 @@ class SampleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sample $sample)
     {
-        //
+        return view('sample.edit',compact('sample'));
     }
 
     /**
@@ -85,9 +85,16 @@ class SampleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sample $sample)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+  
+        $sample->update($request->all());
+  
+        return redirect()->route('sample.show', ['id' => $sample->id]);
     }
 
     /**
