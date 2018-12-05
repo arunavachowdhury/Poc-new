@@ -12,4 +12,9 @@ class Customer extends Model
         'phone_number',
         'contact_person',
     ];
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
 }

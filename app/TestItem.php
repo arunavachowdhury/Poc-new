@@ -13,7 +13,8 @@ class TestItem extends Model
         'uom_id',
         'specified_range_from',
         'specified_range_to',
-        'description'
+        'description',
+        'price'
     ];
 
     public function sample() {
@@ -22,5 +23,10 @@ class TestItem extends Model
 
     public function uom() {
         return $this->belongsTo(Uom::class);
+    }
+
+    public function job()
+    {
+        return $this->hasOne(Job::class);
     }
 }

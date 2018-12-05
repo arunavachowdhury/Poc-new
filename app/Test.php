@@ -21,4 +21,14 @@ class Test extends Model
     {
         return $this->hasMany(Job::class);
     }
+
+    public function sample()
+    {
+        return $this->belongsTo(Sample::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

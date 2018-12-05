@@ -18,4 +18,9 @@ class Sample extends Model
     public function TestItems() {
         return $this->hasMany(TestItem::class);
     }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
 }
