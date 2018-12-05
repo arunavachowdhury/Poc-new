@@ -85,15 +85,11 @@ class TestController extends Controller
         $testItems = $test->jobs()->with('testItem')->get()->pluck('testItem');
         $sample = $test->sample;
         $customer = $test->customer;
-        // return response()->json(['data'=> $testItems]);
-        // dd($testItems);
 
         return view('test.show')->with(['test'=> $test,
                                         'jobs'=> $jobs,
                                         'sample'=> $sample,
                                         'customer'=> $customer]);
-
-   
 
         
         // dd($testItems);
@@ -107,7 +103,10 @@ class TestController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('test.show')->with(['test'=> $test,
+                                        'jobs'=> Job::all(),
+                                        'samples'=> Sample::all(),
+                                        'customers'=> Customer::all()]);
     }
 
     /**
