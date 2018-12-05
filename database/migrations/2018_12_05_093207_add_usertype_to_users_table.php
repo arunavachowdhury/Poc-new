@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabsTable extends Migration
+class AddUsertypeToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateLabsTable extends Migration
      */
     public function up()
     {
-        Schema::create('labs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('address');
-            $table->string('contact_person')->nullable();
-            
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('usertype')->after('password');
         });
     }
 
@@ -30,6 +25,8 @@ class CreateLabsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labs');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

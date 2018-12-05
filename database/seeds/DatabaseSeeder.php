@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Sample;
 use App\TestItem;
 use App\UOM;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,8 +18,11 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
-        Sample::truncate();
-        TestItem::truncate();
-        UOM::truncate();
+        // Sample::truncate();
+        // TestItem::truncate();
+        // UOM::truncate();
+
+        User::truncate();
+        factory(User::class, 20)->create();
     }
 }
