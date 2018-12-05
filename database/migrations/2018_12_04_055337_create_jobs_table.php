@@ -16,7 +16,7 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sample_id')->unsigned();
+            $table->integer('test_id')->unsigned();
             $table->integer('test_item_id')->unsigned();
             $table->string('specified_range_from');
             $table->string('specified_range_to');
@@ -26,7 +26,7 @@ class CreateJobsTable extends Migration
             $table->string('remarks')->nullable();
             $table->timestamps();
 
-            $table->foreign('sample_id')->references('id')->on('samples');
+            $table->foreign('test_id')->references('id')->on('tests');
             $table->foreign('test_item_id')->references('id')->on('test_items');
         });
     }

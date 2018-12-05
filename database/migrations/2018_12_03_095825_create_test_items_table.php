@@ -22,6 +22,7 @@ class CreateTestItemsTable extends Migration
             $table->string('specified_range_from');
             $table->string('specified_range_to');
             $table->text('description');
+            $table->string('price')->nullable();
             $table->string('is_new')->default(0);
             $table->timestamps();
 
