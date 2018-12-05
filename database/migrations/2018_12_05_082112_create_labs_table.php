@@ -18,6 +18,7 @@ class CreateLabsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('contact_person')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class User extends Authenticatable
     const USER_ADMIN = 'admin';
     const USER_TECHNICIAN = 'technician';
     const USER_DIRECTOR = 'director';
-    const USER_EMPLOYEE = 'admin';
+    const USER_EMPLOYEE = 'employee';
 
 
     /**
