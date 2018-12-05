@@ -21,7 +21,6 @@
                 loader.classList.add('fadeOut');
             }, 300);
         });
-
     </script>
     <div class="peers ai-s fxw-nw h-100vh">
         <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style="background-image:url(assets/static/images/bg.jpg)">
@@ -36,22 +35,20 @@
                 @csrf
                 <div class="form-group">
                     <label class="text-normal text-dark">Email</label>
-                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                        placeholder="Email" name="email">
+                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email">
                     @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
                     @endif
                 </div>
                 <div class="form-group">
                     <label class="text-normal text-dark">Password</label>
-                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                        placeholder="Password" name="password">
+                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" name="password">
                     @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
                     @endif
                 </div>
                 <div class="form-group">
