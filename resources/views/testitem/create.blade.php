@@ -41,10 +41,16 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             <div class="form-group">
-                <label for="specified_value">Specified value:</label>
-                <input type="text" class="form-control" name="specified_value" id="specified_value">
+                <label for="specified_range_from">Specified value starting range:</label>
+                <input type="text" class="form-control" name="specified_range_from" id="specified_range_from">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="specified_range_to">Specified value ending range:</label>
+                <input type="text" class="form-control" name="specified_range_to" id="specified_range_to">
             </div>
         </div>
         <div class="col-sm-12">
@@ -72,7 +78,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $("#sample_id").change(function() {
+            $("#sample_id").on('change click', function() {
                 var value = $(this).val();
 
                 $.get("http://127.0.0.1:8000/api/sample/" + value, function( data ) {
@@ -82,9 +88,9 @@
                         content += '<option value="'+value.id+'" >'+value.value+'</option>'
                     });
                     
-                    console.log(content);
+                    // console.log(content);
                     
-                    // $( "#isstandard_id" ).html( content );
+                    $( "#isstandard_id" ).html( content );
                     
                 });
             });

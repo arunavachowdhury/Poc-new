@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>{{$sample->name}}</h1>
+<h1>{{$test->name}}</h1>
 
 <h2>IS Standards</h2>
 <ul class="list-group">
@@ -20,7 +20,7 @@
       <tr>
         <th>Test Item</th>
         <th>Unit of measurment</th>
-        <th>Specified value range</th>
+        <th>Specified value</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
         <tr>
             <td>{{$testItem->name}}</td>
             <td>{{$testItem->uom->unit}}</td>
-            <td>{{$testItem->specified_range_from}} {{$testItem->uom->unit}} - {{$testItem->specified_range_to}} {{$testItem->uom->unit}}</td>
+            <td>{{$testItem->specified_value}}</td>
         </tr>
         @endforeach
     </tbody>

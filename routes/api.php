@@ -17,4 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('sample', 'Api\SampleController')->only(['show']);
+Route::resource('/sample', 'Api\SampleController')->only(['show']);
+
+Route::post('/test_items_query', 'TestItemController@getTestItemsQuery');

@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Symfony\Component\Console\Helper\Table;
 
-class CreateTestItemsTable extends Migration
+class CreateJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +14,20 @@ class CreateTestItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_items', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->integer('sample_id')->unsigned();
-            $table->integer('isstandard_id')->unsigned();
-            $table->integer('uom_id')->unsigned();
+            $table->integer('test_item_id')->unsigned();
             $table->string('specified_range_from');
             $table->string('specified_range_to');
-            $table->text('description');
-            $table->string('is_new')->default(0);
+            $table->float('observed_value')->nullable();
+            $table->string('lab_id')->nullable();
+            $table->string('is_new');
+            $table->string('remarks')->nullable();
             $table->timestamps();
 
             $table->foreign('sample_id')->references('id')->on('samples');
-            $table->foreign('uom_id')->references('id')->on('uoms');
-            $table->foreign('isstandard_id')->references('id')->on('i_s_standards');
+            $table->foreign('test_item_id')->references('id')->on('test_items');
         });
     }
 
@@ -38,6 +38,6 @@ class CreateTestItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_items');
+        Schema::dropIfExists('jobs');
     }
 }
