@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" style="box-shadow: 0px 0px 8px grey">
     <div class="sidebar-inner">
         <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
