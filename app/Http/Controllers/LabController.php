@@ -59,7 +59,6 @@ class LabController extends Controller
     public function show($id)
     {
         $lab = Lab::findOrFail($id);
-        $users = User::all();
         $technician = DB::table('users')->where('usertype', User::USER_TECHNICIAN)->get();
         return view('lab.show')->with(['lab'=> $lab, 'technicians'=> $technician]);
     }

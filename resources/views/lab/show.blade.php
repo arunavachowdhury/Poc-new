@@ -1,4 +1,4 @@
-@extends('includes.app')
+@extends('layouts.app')
 
 @section('content')
 
@@ -27,8 +27,8 @@
           <form action="{{route('allocate.user',['id'=> $lab->id])}}" method="post">
             {!! csrf_field() !!}
             <div class="form-group">
-              <label for="technician">Technician List:</label>
-              <select class="form-control">
+              <label for="technician_id">Technician List:</label>
+              <select class="form-control" id="technician_id" name="technician_id">
                  @foreach($technicians as $technician)
                   <option value =" {{ $technician->id }}"> {{$technician->name}} </option>
                   @endforeach

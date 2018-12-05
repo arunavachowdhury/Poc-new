@@ -10,10 +10,9 @@ class LabUserController extends Controller
 {
     public function allocateUser(Request $request ,$id)
     {
-        dd($request);
         $lab = Lab::findOrFail($id);
-        $user = User::findOrFail($request->id);
-
-
+        $technician = User::findOrFail($request->technician_id);
+        $lab->users()->attach($technician);
+        return redirect()->back();
     }
 }

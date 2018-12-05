@@ -25,7 +25,7 @@ Route::resource('testitem', 'TestItemController')->middleware(['admin', 'directo
 Route::resource('customer', 'CustomerController')->middleware('auth');
 Route::resource('test', 'TestController')->middleware('auth');
 Route::resource('lab', 'LabController');
-Route::post('lab/user/allocate/{id}', 'LabUserController@allocateUser')->name('allocate.user');
+Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('allocate.user');
 
 Auth::routes();
 
