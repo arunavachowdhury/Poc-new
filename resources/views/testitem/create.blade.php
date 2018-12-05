@@ -1,4 +1,4 @@
-@extends('includes.app')
+@extends('layouts.app')
 
 @section('content')
 
@@ -61,7 +61,7 @@
         </div>
         <div class="col-sm-12">
             <div class="form-group">
-                <label for="description">Test Item name:</label>
+                <label for="description">Description:</label>
                 <textarea name="description" id="description" rows="2" class="form-control"></textarea>
             </div>
         </div>
