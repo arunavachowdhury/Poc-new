@@ -59,7 +59,7 @@ class TestController extends Controller
             $testItem = TestItem::findOrFail($test_item);
 
             $jobs = Job::create([
-                'sample_id' => $test->sample_id,
+                'test_id' => $test->id,
                 'test_item_id' => $test_item,
                 'specified_range_from' => $testItem->specified_range_from,
                 'specified_range_to' => $testItem->specified_range_to,
@@ -81,6 +81,19 @@ class TestController extends Controller
     public function show($id)
     {
         $test = Test::findOrFail($id);
+        $jobs = $test->jobs;
+        $testItems = $test->jobs()->with('testItem')->get()->pluck('testItem');
+        $sample = $test->sample;
+        $customer = $test->customer;
+        // return response()->json(['data'=> $testItems]);
+        // dd($testItems);
+
+        return view('test.show')->with(['test'=> $test,
+                                        'jobs'=> $jobs,
+                                        'sample'=> $sample,
+                                        'customer'=> $customer]);
+
+   
 
         
         // dd($testItems);
