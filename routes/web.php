@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('includes.dashboard');
-})->middleware('auth')->name('dashboard');
+Route::resource('uom', 'UomController')->middleware(['admin', 'director']);
 
 Route::resource('sample', 'SampleController')->middleware(['admin', 'director']);
 Route::resource('isstandard', 'ISStandardController')->middleware(['admin', 'director']);
@@ -33,4 +31,4 @@ Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('
 Route::post('lab/{id}/user/remove/', 'LabUserController@removeUser')->name('remove.user');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');

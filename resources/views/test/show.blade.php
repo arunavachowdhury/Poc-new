@@ -27,7 +27,7 @@
                         <b>Test status :</b>
                         <div style="display:inline; margin-left: 5px" class="peer">
                             @switch($test->status)
-                                @case('Draft')
+                                @case('draft')
                                     <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-warning">Draft copy, Click to regsiter</a>
                                 @break
                                 @case('registered')
