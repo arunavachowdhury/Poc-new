@@ -45,7 +45,8 @@ class TestController extends Controller
             'customer_id'=> 'required',
             'sample_id'=> 'required',
             'isstandard_id'=> 'required',
-            'sample_received_on'=> 'required',      
+            'sample_received_on'=> 'required',  
+            'sample_reference_no'=>'reruired',    
         ];
         $this->validate($request, $rules);
 
@@ -61,6 +62,7 @@ class TestController extends Controller
             $jobs = Job::create([
                 'test_id' => $test->id,
                 'test_item_id' => $test_item,
+                'test_item_name' => $testItem->name,
                 'specified_range_from' => $testItem->specified_range_from,
                 'specified_range_to' => $testItem->specified_range_to,
                 'is_new' => $testItem->is_new

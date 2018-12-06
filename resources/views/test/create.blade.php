@@ -16,6 +16,7 @@ Add Test
                 <select class="form-control" id="customer_id" name="customer_id">
                     @foreach($customers as $customer)
                     <option value="{{$customer->id}}">{{$customer->name}}</option>
+                    <input type="hidden" value="{{$customer->name}}" name="customer_name">
                     @endforeach
                 </select>
             </div>
@@ -29,6 +30,7 @@ Add Test
                     @else
                     @foreach($samples as $sample)
                     <option value="{{$sample->id}}">{{$sample->name}}</option>
+                    <input type="hidden" value="{{$sample->name}}" name="sample_name">
                     @endforeach
                     @endif
                 </select>
@@ -67,7 +69,13 @@ Add Test
                 <input type="date" class="form-control" name="date_of_disposal">
             </div>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="payment_details">Price</label>
+                <input type="text" class="form-control" id="price" name="price">
+            </div>
+        </div>
+        <div class="col-sm-6">
             <div class="form-group">
                 <label for="payment_details">Payment Details:</label>
                 <input type="text" class="form-control" id="payment_details" name="payment_details">
