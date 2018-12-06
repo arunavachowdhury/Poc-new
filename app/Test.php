@@ -8,10 +8,13 @@ class Test extends Model
 {
     protected $fillable = [
                         'customer_id',
+                        'customer_name',
                         'sample_id',
+                        'sample_name',
                         'sample_received_on',
                         'sample_reference_no',
                         'date_of_disposal',
+                        'price',
                         'payment_details',
                         'remarks',
                         'status',
