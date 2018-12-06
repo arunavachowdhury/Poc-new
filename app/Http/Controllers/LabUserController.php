@@ -15,4 +15,12 @@ class LabUserController extends Controller
         $lab->users()->attach($technician);
         return redirect()->back();
     }
+
+    public function removeUser(Request $request, $id)
+    {
+        $lab = Lab::findOrFail($id);
+        $technician = User::findOrFail($request->technician_id);
+        $lab->users()->detach($technician->id);
+        // return $this->ShowAll($product->categories);
+    }
 }

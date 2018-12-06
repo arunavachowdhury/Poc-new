@@ -30,7 +30,7 @@ Route::get('/test/register/{id}', 'TestController@register')->middleware('auth')
 
 Route::resource('lab', 'LabController');
 Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('allocate.user');
-
+Route::post('lab/{id}/user/remove/', 'LabUserController@removeUser')->name('remove.user');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -60,6 +60,7 @@ class LabController extends Controller
     {
         $lab = Lab::findOrFail($id);
         $technician = DB::table('users')->where('usertype', User::USER_TECHNICIAN)->get();
+        $users = $lab->users;
         return view('lab.show')->with(['lab'=> $lab, 'technicians'=> $technician]);
     }
 

@@ -17,4 +17,9 @@ class Lab extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function tests()
+    {
+        return $this->belongsToMany(Lab::class);
+    }
 }
