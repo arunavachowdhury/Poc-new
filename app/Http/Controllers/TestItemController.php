@@ -43,6 +43,7 @@ class TestItemController extends Controller
             'sample_id' => 'required',
             'isstandard_id' => 'required',
             'uom_id' => 'required',
+            'price' => 'required|integer',
             'specified_range_from' => 'required',
             'specified_range_to' => 'required',
             'description' => 'required'

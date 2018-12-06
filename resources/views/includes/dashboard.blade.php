@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+
+Dashboard
+
+@endsection
+
 @section('content')
+
 @if(Auth::user()->isUserAdmin())
 <!-- Admin User -->
 <div class="row gap-20 masonry pos-r">
