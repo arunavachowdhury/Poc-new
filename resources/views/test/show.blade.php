@@ -1,65 +1,108 @@
 @extends('layouts.app')
 
+@section('title')
+
+{{$sample->name}} | {{$customer->name}}
+
+@endsection
+
 @section('content')
 
-<h1>Test</h1>
-
-<div style="width: calc(95% - 220px); position:relative; border:1px solid #e2e2e2; padding:30px; margin-left: 20px">
-    <div class="card">
-    <div class="card-header card-header-primary"><h4 class="card-title ">Test</h4></div>
-    <div class="card-body">
-        <table class="table table-bordered">
-            <tbody>
-                <tr>
-                    <td>Date Of Receipt</td>
-                    <td>{{$test->sample_received_on}}</td>
-                </tr>
-                <tr>
-                    <td>Disposal Date</td>
-                    <td>{{$test->date_of_disposal}}</td>
-                </tr>
-                <tr>
-                    <td>Sample Reference No</td>
-                    <td>{{$test->sample_reference_no}}</td>
-                </tr>
-                <tr>
-                    <td>Customer Name</td>
-                    <td>{{$customer->name}}</td>
-                </tr>
-                <tr>
-                    <td>Sample Name</td>
-                    <td>{{$sample->name}}</td>
-                </tr>
-                <tr>
-                    <td>Sample Description</td>
-                    <td>{{$sample->description}}</td>
-                </tr>
-                <tr>
-                    <td>Payment Details</td>
-                    <td>{{$test->payment_details}}</td>
-                </tr>
-                <tr>
-                    <td>Remarks</td>
-                    <td>{{$test->remarks}}</td>
-                </tr>
-            </tbody>
+<div class="bgc-light-green-500 c-white p-20">
+    <div class="peers ai-c jc-sb gap-40">
+        <div class="peer peer-greed">
+            <h1>{{$sample->name}} || {{$customer->name}}</h1>
+        </div>
     </div>
+</div>
+<!-- <a href="{{route('sample.edit', ['sample' => $sample->id])}}" class="btn cur-p btn-primary">Edit Sample/Product</a> -->
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h4 class="c-grey-900 mB-20">Test details</h4>
+            <div class="mT-30">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-action">
+                        <b>Test status :</b>
+                        <div style="display:inline; margin-left: 5px" class="peer">
+                            @switch($test->status)
+                                @case('Draft')
+                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-warning">Draft copy, Click to regsiter</a>
+                                @break
+                                @case('registered')
+                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered</a>
+                                @break
+                                @case('in_progress')
+                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">In Progress</a>
+                                @break
+                                @case('sent_to_lab')
+                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-secondary">Sent to Lab</a>
+                                @break
+                                @case('completed')
+                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-success">Completed</a>
+                                @break                                    
+                            @endswitch
+                        </div>
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <b>Customer/Comany name :</b> {{$customer->name}}
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <b>Product/Sample name:</b> {{$sample->name}}
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <b>Product/Sample desciption:</b> {{$sample->description}}
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <b>Sample recieved on:</b> {{$test->sample_received_on}}
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <b>Sample disposal date:</b> 
+                    </li>
+                    <!-- <li class="list-group-item list-group-item-action">
+                        <b>Price: {{$test->price}} </b> 
+                    </li> -->
+                </ul>
+            </div>
+        </div>
     </div>
-    </table>
-
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th><b>Tests to be performed</b></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($jobs as $job)
-            <tr>
-                <td>{{$job->testItem->name}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h4 class="c-grey-900 mB-20">Specific Test Performed</h4>
+            <div class="mT-30">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Test Item</th>
+                            <th scope="col">Specified value range</th>
+                            <th scope="col">Observed value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($jobs as $job)
+                        <tr>
+                            <td>{{$job->testItem->name}}</td>
+                            <!-- <td></td> -->
+                            <td>{{$job->specified_range_from}} {{$job->testItem->uom->unit}} - {{$job->specified_range_to}}
+                            {{$job->testItem->uom->unit}}</td>
+                            <td>
+                                @if(!$job->obseved_value)
+                                empty
+                                @else
+                                {{$job->obseved_value}}
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

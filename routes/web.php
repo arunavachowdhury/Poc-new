@@ -23,7 +23,11 @@ Route::resource('sample', 'SampleController')->middleware(['admin', 'director'])
 Route::resource('isstandard', 'ISStandardController')->middleware(['admin', 'director']);
 Route::resource('testitem', 'TestItemController')->middleware(['admin', 'director']);
 Route::resource('customer', 'CustomerController')->middleware('auth');
+
 Route::resource('test', 'TestController')->middleware('auth');
+Route::get('/drafts', 'TestController@drafts')->middleware('auth')->name('test.drafts');
+Route::get('/test/register/{id}', 'TestController@register')->middleware('auth')->name('test.regsiter');
+
 Route::resource('lab', 'LabController');
 Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('allocate.user');
 
