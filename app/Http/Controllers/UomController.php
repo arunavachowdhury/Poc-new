@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
+use App\Uom;
 
-class CustomerController extends Controller
+class UomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer.index')->withCustomers(Customer::all());
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        return view('uom.create');
     }
 
     /**
@@ -35,20 +35,13 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $rules = [
-            'name' => 'required',
-            'address' => 'required',
-            'phone_number' => 'required'
-        ];
+        $this->validate($request, ['unit' => 'required']);
 
-        $this->validate($request, $rules);
+        Uom::create([
+            'unit' => $request->unit,
+        ]);
 
-        $data = $request->all();
-        $customer = Customer::create($data);
-
-        return redirect()->route('test.create');
-
+        return redirect()->back();
     }
 
     /**
@@ -59,8 +52,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::findOrFail($id);
-        return view('customer.show')->with('customer', $customer);
+        //
     }
 
     /**
