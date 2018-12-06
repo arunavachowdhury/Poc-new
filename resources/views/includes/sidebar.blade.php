@@ -29,7 +29,17 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{route('sample.index')}}">Product / Material of Test</a></li>
                     <li><a href="{{route('sample.create')}}">+ Add Product / Material of Test</a></li>
+                    <li><a href="{{route('isstandard.create')}}">+ Add IS Standard to Product / Material of Test</a></li>
                 </ul>
+            </li>
+            <!-- Test Item -->
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{route('testitem.create')}}">
+                <span class="icon-holder">
+                  <i class="c-deep-purple-500 ti-pencil"></i>
+                </span>
+                <span class="title">+ Add Specific Test</span>
+              </a>
             </li>
             @endif
             <!-- Tests -->
