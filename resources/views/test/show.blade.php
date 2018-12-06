@@ -31,12 +31,12 @@
                                     <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-warning">Draft copy, Click to regsiter</a>
                                 @break
                                 @case('registered')
-                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered, allocate job</a>
+                                    <a href="{{route('allocate.get', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered, allocate job</a>
                                 @break
                                 @case('in_progress')
                                     <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">In Progress</a>
                                 @break
-                                @case('sent_to_lab')
+                                @case('allocated')
                                     <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-secondary">Sent to Lab</a>
                                 @break
                                 @case('completed')

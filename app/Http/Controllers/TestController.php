@@ -10,6 +10,7 @@ use App\Test;
 use Illuminate\Support\Facades\DB;
 use App\TestItem;
 use App\Job;
+use App\Lab;
 
 class TestController extends Controller
 {
@@ -158,6 +159,39 @@ class TestController extends Controller
         } else {
             redirect()->back();
         }
+        return redirect()->route('test.show', ['id' => $test->id]);
+    }
+
+    /**
+     * 
+     */
+    public function allocateView($id) {
+        $test = Test::findOrFail($id);
+        $testJobs = DB::table('jobs')->where('test_id', $test->id)->get();
+        return view('test.allocate')
+        ->with(['test' => $test])
+        ->with(['jobs' => $testJobs])
+        ->with(['labs' => Lab::all()]);
+    }
+
+    /**
+     * 
+     */
+    public function allocateAction(Request $request) {
+        $test = Test::findOrFail($request->test_id);
+        
+        $jobs = $test->jobs;
+
+        foreach ($jobs as $job) {
+            DB::table('jobs')
+            ->where('id', $job->id)
+            ->update(['lab_id' => $request->lab_id, 'user_id' => $request->user_id]);
+        }
+        
+        $test->status = 'allocated';
+
+        $test->save();
+
         return redirect()->route('test.show', ['id' => $test->id]);
     }
 }
