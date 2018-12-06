@@ -11,6 +11,7 @@ class Test extends Model
                         'customer_name',
                         'sample_id',
                         'sample_name',
+                        'is_standard_id',
                         'sample_received_on',
                         'sample_reference_no',
                         'date_of_disposal',
@@ -29,6 +30,11 @@ class Test extends Model
     {
         return $this->belongsTo(Sample::class);
     }
+
+    public function isStandard()
+    {
+        return $this->belongsTo(ISStandard::class);
+    }    
 
     public function customer()
     {

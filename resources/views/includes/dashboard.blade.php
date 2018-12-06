@@ -83,7 +83,7 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="ta-c bdT w-100 p-20"><a href="{{route('test.drafts')}}">Check all</a></div>
+            <div class="ta-c bdT w-100 p-20"><a href="{{route('registered.tests')}}">Check all</a></div>
         </div>
     </div>
     <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 1026px;">
@@ -101,15 +101,15 @@ Dashboard
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    @if(count($myJobs) == 0)
+                                    @if(count($myTests) == 0)
                                         <p>List is empty</p>
                                     @else
-                                        @foreach($myJobs as $myJob)
+                                        @foreach($myTests as $myTest)
                                             <tr>
                                                 <td class="bdwT-0">
-                                                    <a style="color: #666" href="{{route('test.show', ['id' => $myJob->test_id])}}">
-                                                        {{$myJob->id}} ||
-                                                        {{Carbon\Carbon::parse($myJob->created_at)->format('Y-m-d')}} </a>
+                                                    <a style="color: #666" href="{{route('test.show', ['id' => $myTest->id])}}">
+                                                        <h4>Test Name</h4>  {{$myTest->sample_name}} 
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -120,7 +120,7 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="ta-c bdT w-100 p-20"><a href="{{route('test.drafts')}}">Check all</a></div>
+            <div class="ta-c bdT w-100 p-20"><a href="#">Check all</a></div>
         </div>
     </div>
 </div>

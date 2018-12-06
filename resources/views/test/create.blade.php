@@ -16,7 +16,7 @@ Add Test
                 <select class="form-control" id="customer_id" name="customer_id">
                     @foreach($customers as $customer)
                     <option value="{{$customer->id}}">{{$customer->name}}</option>
-                    <input type="hidden" value="{{$customer->name}}" name="customer_name">
+                    <!-- <input type="hidden" value="{{$customer->name}}" name="customer_name"> -->
                     @endforeach
                 </select>
             </div>
@@ -30,7 +30,7 @@ Add Test
                     @else
                     @foreach($samples as $sample)
                     <option value="{{$sample->id}}">{{$sample->name}}</option>
-                    <input type="hidden" value="{{$sample->name}}" name="sample_name">
+                    <!-- <input type="hidden" value="{{$sample->name}}" name="sample_name"> -->
                     @endforeach
                     @endif
                 </select>
