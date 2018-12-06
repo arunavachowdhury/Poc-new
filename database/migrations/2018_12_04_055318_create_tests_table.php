@@ -22,7 +22,7 @@ class CreateTestsTable extends Migration
             $table->string('sample_reference_no');
             $table->string('payment_details')->nullable();
             $table->string('remarks')->nullable();
-            $table->string('status')->default('Draft');
+            $table->string('status')->default('draft');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');

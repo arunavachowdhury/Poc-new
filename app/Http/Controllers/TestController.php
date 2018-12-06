@@ -91,8 +91,6 @@ class TestController extends Controller
                                         'sample'=> $sample,
                                         'customer'=> $customer]);
 
-        
-        // dd($testItems);
     }
 
     /**
@@ -130,5 +128,29 @@ class TestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * 
+     * 
+     */
+    public function drafts() {
+        $drafts = DB::table('tests')->where('status', 'draft')->orderBy('created_at', 'desc')->get();
+        return view('test.drafts')->with(['drafts' => $drafts]);
+    }
+
+    /**
+     * 
+     * 
+     */
+    public function register($id) {
+        $test = Test::findOrFail($id);
+        if($test->status == 'draft' || $test->status == 'Draft') {
+            $test->status = 'registered';
+            $test->save();
+        } else {
+            redirect()->back();
+        }
+        return redirect()->route('test.show', ['id' => $test->id]);
     }
 }

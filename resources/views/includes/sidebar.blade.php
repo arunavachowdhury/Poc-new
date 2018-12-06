@@ -50,20 +50,18 @@
                     <span class="arrow"><i class="ti-angle-right"></i></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="google-maps.html">Customer already Registered?</a></li>
-                    <li><a href="vector-maps.html">New Customer</a></li>
+                    <li><a href="{{route('test.create')}}">Customer already Registered?</a></li>
+                    <li><a href="{{route('customer.create')}}">New Customer</a></li>
                 </ul>
             </li>
             <!-- Review -->
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>
-                    <span class="title">Test Review</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="google-maps.html">Show Review List</a></li>
-                </ul>
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{route('test.drafts')}}">
+                <span class="icon-holder">
+                  <i class="c-deep-yellow-500 ti-files"></i>
+                </span>
+                <span class="title">Show draft copies</span>
+              </a>
             </li>
             <!-- Jobs -->
             <li class="nav-item dropdown">
