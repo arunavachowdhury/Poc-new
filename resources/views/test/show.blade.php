@@ -31,7 +31,7 @@
                                     <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-warning">Draft copy, Click to regsiter</a>
                                 @break
                                 @case('registered')
-                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered</a>
+                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered, allocate job</a>
                                 @break
                                 @case('in_progress')
                                     <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">In Progress</a>

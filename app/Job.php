@@ -9,6 +9,13 @@ class Job extends Model
     public $fillable = [
         'test_id',
         'test_item_id',
+        'test_item_name',
+        'lab_id',
+        'user_id',
+        'ref_lab_id',
+        'ref_user_id',
+        'modified_by',
+        'price',
         'specified_range_from',
         'specified_range_to',
         'observed_value',

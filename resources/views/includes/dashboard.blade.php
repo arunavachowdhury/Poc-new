@@ -65,12 +65,12 @@ Dashboard
                             <tbody>
                                 <tr>
                                     @if($registereds->count() == 0)
-                                        <p>Drafts list is empty</p>
+                                        <p>List is empty</p>
                                     @else
                                         @foreach($registereds as $regsitered)
                                             <tr>
                                                 <td class="bdwT-0">
-                                                    <a style="color: #666" href="{{route('test.show', ['id' => $draft->id])}}">Test Draft ||
+                                                    <a style="color: #666" href="{{route('test.show', ['id' => $draft->id])}}">
                                                         {{$regsitered->id}} ||
                                                         {{Carbon\Carbon::parse($regsitered->created_at)->format('Y-m-d')}} </a>
                                                 </td>
@@ -83,7 +83,7 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="ta-c bdT w-100 p-20"><a href="{{route('test.drafts')}}">Check all drafts</a></div>
+            <div class="ta-c bdT w-100 p-20"><a href="{{route('test.drafts')}}">Check all</a></div>
         </div>
     </div>
 </div>

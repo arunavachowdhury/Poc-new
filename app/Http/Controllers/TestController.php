@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Sample;
@@ -40,22 +41,26 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $rules = [
+        $customer = Customer::findOrFail($request->customer_id);
+        $sample = Sample::findOrFail($request->sample_id);
+
+        $validator = Validator::make($request->all(), [
             'customer_id'=> 'required',
             'sample_id'=> 'required',
             'isstandard_id'=> 'required',
             'sample_received_on'=> 'required',  
-            'sample_reference_no'=>'reruired',    
-        ];
-        $this->validate($request, $rules);
+            'sample_reference_no'=>'reruired', 
+        ]);
 
-        $data = $request->all();
-
-        $test = Test::create($data);
+        $test = Test::create([
+            'customer_id' => $customer->id,
+            'customer_name' => $customer->name,
+            'sample_id' => $sample->id,
+            'sample_name' => $sample->name,
+            'sample_received_on' => $request->sample_received_on,
+            'sample_reference_no' => $request->sample_reference_no,
+        ]);
         
-        // $testItems = DB::table('jobs');
-
         foreach ($request->test_items as $test_item) {
             $testItem = TestItem::findOrFail($test_item);
 
@@ -65,9 +70,9 @@ class TestController extends Controller
                 'test_item_name' => $testItem->name,
                 'specified_range_from' => $testItem->specified_range_from,
                 'specified_range_to' => $testItem->specified_range_to,
+                'price' => $testItem->price,
                 'is_new' => $testItem->is_new
             ]);
-            // $jobs->test()->associate($test);
         }
         // dd($test);
 
