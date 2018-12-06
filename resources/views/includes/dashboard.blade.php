@@ -27,7 +27,7 @@ Dashboard
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    @if($drafts->count() == 0)
+                                    @if(count($drafts) === 0)
                                         <p>Drafts list is empty</p>
                                     @else
                                         @foreach($drafts as $draft)
@@ -64,15 +64,52 @@ Dashboard
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    @if($registereds->count() == 0)
+                                    @if(count($registereds) == 0)
                                         <p>List is empty</p>
                                     @else
                                         @foreach($registereds as $regsitered)
                                             <tr>
                                                 <td class="bdwT-0">
-                                                    <a style="color: #666" href="{{route('test.show', ['id' => $draft->id])}}">
+                                                    <a style="color: #666" href="{{route('test.show', ['id' => $regsitered->id])}}">
                                                         {{$regsitered->id}} ||
                                                         {{Carbon\Carbon::parse($regsitered->created_at)->format('Y-m-d')}} </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="ta-c bdT w-100 p-20"><a href="{{route('test.drafts')}}">Check all</a></div>
+        </div>
+    </div>
+    <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 1026px;">
+        <div class="bd bgc-white">
+            <div class="layers">
+                <div class="layer w-100">
+                    <div class="bgc-light-green-500 c-white p-20">
+                        <div class="peers ai-c jc-sb gap-40">
+                            <div class="peer peer-greed">
+                                <h5>My Test Jobs</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive p-20">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    @if(count($myJobs) == 0)
+                                        <p>List is empty</p>
+                                    @else
+                                        @foreach($myJobs as $myJob)
+                                            <tr>
+                                                <td class="bdwT-0">
+                                                    <a style="color: #666" href="{{route('test.show', ['id' => $myJob->test_id])}}">
+                                                        {{$myJob->id}} ||
+                                                        {{Carbon\Carbon::parse($myJob->created_at)->format('Y-m-d')}} </a>
                                                 </td>
                                             </tr>
                                         @endforeach

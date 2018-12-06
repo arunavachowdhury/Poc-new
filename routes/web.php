@@ -31,4 +31,7 @@ Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('
 Route::post('lab/{id}/user/remove/', 'LabUserController@removeUser')->name('remove.user');
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middleware('auth');
+
+Route::get('/test/allocate/{id}', 'TestController@allocateView')->name('allocate.get');
+Route::post('/test/allocate', 'TestController@allocateAction')->name('allocate');

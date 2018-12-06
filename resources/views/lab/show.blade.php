@@ -27,32 +27,6 @@
                     <div class="panel-body">{{$lab->phone_number}}</div>
                 </div>
                 <hr>
-                <!-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                        </tr>
-                    </tbody>
-                </table> -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">Add Technician</div>
                     <div class="panel-body">
