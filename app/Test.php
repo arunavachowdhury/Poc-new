@@ -36,4 +36,9 @@ class Test extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function labs()
+    {
+        return $this->belongsToMany(Lab::class);
+    }
 }

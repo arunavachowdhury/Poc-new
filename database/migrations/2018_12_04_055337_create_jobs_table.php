@@ -18,16 +18,24 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->integer('test_id')->unsigned();
             $table->integer('test_item_id')->unsigned();
+            $table->integer('lab_id')->nullable()->unsigned();
+            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('ref_lab_id')->nullable()->unsigned();
+            $table->integer('ref_user_id')->nullable()->unsigned();
+            
             $table->string('specified_range_from');
             $table->string('specified_range_to');
             $table->float('observed_value')->nullable();
-            $table->string('lab_id')->nullable();
             $table->string('is_new');
             $table->string('remarks')->nullable();
             $table->timestamps();
 
             $table->foreign('test_id')->references('id')->on('tests');
             $table->foreign('test_item_id')->references('id')->on('test_items');
+            $table->foreign('lab_id')->references('id')->on('labs');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('ref_lab_id')->references('id')->on('labs');
+            $table->foreign('ref_user_id')->references('id')->on('users');
         });
     }
 
