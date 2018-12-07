@@ -22,3 +22,5 @@ Route::resource('/sample', 'Api\SampleController')->only(['show']);
 Route::post('/test_items_query', 'TestItemController@getTestItemsQuery');
 
 Route::post('/get_user_for_lab', 'LabUserController@getUserForLab');
+
+Route::post('/fill_up_observed_value', 'TestController@fillUpJobObservedValue');
