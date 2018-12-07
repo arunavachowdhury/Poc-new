@@ -30,38 +30,6 @@
                         alt=""></div>
             </div>
         </div>
-        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width:320px">
-            <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="form-group">
-                    <label class="text-normal text-dark">Email</label>
-                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                        placeholder="Email" name="email">
-                    @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label class="text-normal text-dark">Password</label>
-                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                        placeholder="Password" name="password">
-                    @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <div class="peers ai-c jc-sb fxw-nw">
-                        <div class="peer">
-                            <div class="peer"><button class="btn btn-primary" style="cursor:pointer">Login</button></div>
-                        </div>
-                    </div>
-            </form>
-        </div>
     </div>
     <script type="text/javascript" src="{{asset('js/vendor.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bundle.js')}}"></script>

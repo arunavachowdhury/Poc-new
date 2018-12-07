@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@home');
 
 Route::resource('uom', 'UomController')->middleware(['admin', 'director']);
 
@@ -37,3 +35,4 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middlew
 
 Route::get('/test/allocate/{id}', 'TestController@allocateView')->name('allocate.get');
 Route::post('/test/allocate', 'TestController@allocateAction')->name('allocate');
+Route::get('/report', 'TestController@report')->name('test.report');

@@ -245,4 +245,11 @@ class TestController extends Controller
 
         return response()->json(['data' => $job]);
     }
+
+    /**
+     * 
+     */
+    public function report() {
+        return view('test.report');
+    }
 }

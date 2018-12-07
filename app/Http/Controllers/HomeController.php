@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
+     * 
+     */
+    public function home() {
+        if(Auth::check()) {
+            redirect()->route('dashboard');
+        }
+        return view('welcome');
+    }
+
+    /**
      * Create a new controller instance.
      *
      * @return void
