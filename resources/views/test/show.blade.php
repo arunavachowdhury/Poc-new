@@ -101,7 +101,7 @@
                                 @if($job->observed_value)
                                 {{$job->observed_value}}
                                 @else
-                                <span>empty
+                                <span id="span-{{$job->id}}" class="return_value">empty
                                     &nbsp;</span>
                                 @endif
 
@@ -132,7 +132,7 @@
 <script>
     $(document).ready(function () {
         $(".fill_up_values").on('click', function () {
-            $(this).closest('.fill_up_job_values').find('span').hide();
+            // $(this).closest('.fill_up_job_values').find('span').hide();
             $(this).hide();
             $(this).closest('.fill_up_job_values').find('.hidden').show();
         });
@@ -145,21 +145,16 @@
 
             if (this_job_feild_value == '' || this_job_feild_value == null) {
                 console.log('error: empty observed value value');
-            } else {               
+            } else {
+                $(this).closest('.hidden').hide();
                 $.post("http://127.0.0.1:8000/api/fill_up_observed_value/", {
                     job_id : my_job_id,
                     modified_by : my_user_id,
                     observed_value : this_job_feild_value
                 }, function (data, status) {
-                    console.log(data.data);
-                    
-                    // content = '';
-                    // $.each(data.data, function (key, value) {
-                    //     content += '<option value="' + value.id + '">' + value.name +
-                    //         '</option>';
-
-                    // });
-                    // $('#user_id').html(content);
+                    $(this).closest('.hidden').hide();
+                    var span_id = 'span-' + data.data.id;
+                    $('#'+span_id).html(data.data.observed_value);
                 });
             }
         });
