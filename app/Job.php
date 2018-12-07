@@ -19,6 +19,7 @@ class Job extends Model
         'specified_range_from',
         'specified_range_to',
         'observed_value',
+        'in_range',
         'lab_id',
         'is_new'
     ];

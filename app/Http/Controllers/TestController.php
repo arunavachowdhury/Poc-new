@@ -212,9 +212,17 @@ class TestController extends Controller
             'observed_value' => 'required'
         ]);
 
+        $job = Job::findOrFail($request->job_id);
+
+        if($job->specified_range_from < $request->observed_value && $job->specified_range_to > $request->observed_value) {
+            $in_range = 1;
+        } else {
+            $in_range = 0;
+        }
+
         DB::table('jobs')
             ->where('id', $request->job_id)
-            ->update(['modified_by' => $request->modified_by, 'observed_value' => $request->observed_value]);
+            ->update(['modified_by' => $request->modified_by, 'observed_value' => $request->observed_value, 'in_range' => $in_range]);
 
         $job = Job::findOrFail($request->job_id);
 
