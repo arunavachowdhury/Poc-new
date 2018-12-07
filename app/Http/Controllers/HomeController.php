@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function home() {
         if(Auth::check()) {
-            redirect()->route('dashboard');
+           return redirect()->route('dashboard');
         }
         return view('welcome');
     }
