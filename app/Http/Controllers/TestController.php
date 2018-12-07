@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
+use Session;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Sample;
@@ -31,7 +32,15 @@ class TestController extends Controller
      */
     public function create()
     {
-        return view('test.create')->with(['customers'=> Customer::all(), 'samples' => Sample::all(),'tests'=> Test::all()]);
+        if(Customer::all()->count() == 0) {
+            Session::flash('error', 'You need a Customer to add a Test');
+            return redirect()->route('customer.create');
+        }
+        if(Sample::all()->count() == 0) {
+            Session::flash('error', 'You need a Sample to add a Test');
+            return redirect()->route('customer.create');
+        }
+        return view('test.create')->with(['customers'=> Customer::all(), 'samples' => Sample::all()]);
     }
 
     /**
@@ -95,6 +104,8 @@ class TestController extends Controller
         $sample = $test->sample;
         $customer = $test->customer;
         $isStandard = $test->isStandard;
+
+        // Session::flash('error', 'oyy');
 
         return view('test.show')->with(['test'=> $test,
                                         'jobs'=> $jobs,
@@ -177,6 +188,12 @@ class TestController extends Controller
      */
     public function allocateView($id) {
         $test = Test::findOrFail($id);
+
+        if(Lab::all()->count() == 0) {
+            Session::flash('error', 'You need a Lab to allocate a Job');
+            return redirect()->route('lab.create');
+        }
+
         $testJobs = DB::table('jobs')->where('test_id', $test->id)->get();
         return view('test.allocate')
         ->with(['test' => $test])
@@ -196,12 +213,36 @@ class TestController extends Controller
             DB::table('jobs')
             ->where('id', $job->id)
             ->update(['lab_id' => $request->lab_id, 'user_id' => $request->user_id]);
-        }
-        
+        }        
         $test->status = 'allocated';
-
         $test->save();
-
         return redirect()->route('test.show', ['id' => $test->id]);
+    }
+
+    /**
+     * 
+     */
+    public function fillUpJobObservedValue(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'job_id' => 'required',
+            'modified_by' => 'required',
+            'observed_value' => 'required'
+        ]);
+
+        $job = Job::findOrFail($request->job_id);
+
+        if($job->specified_range_from < $request->observed_value && $job->specified_range_to > $request->observed_value) {
+            $in_range = 1;
+        } else {
+            $in_range = 0;
+        }
+
+        DB::table('jobs')
+            ->where('id', $request->job_id)
+            ->update(['modified_by' => $request->modified_by, 'observed_value' => $request->observed_value, 'in_range' => $in_range]);
+
+        $job = Job::findOrFail($request->job_id);
+
+        return response()->json(['data' => $job]);
     }
 }

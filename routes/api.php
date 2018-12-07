@@ -24,3 +24,5 @@ Route::post('/test_items_query', 'TestItemController@getTestItemsQuery');
 Route::post('/get_user_for_lab', 'LabUserController@getUserForLab');
 
 Route::get('/test_items_show/{id}', 'TestItemController@testItemShow');
+
+Route::post('/fill_up_observed_value', 'TestController@fillUpJobObservedValue');

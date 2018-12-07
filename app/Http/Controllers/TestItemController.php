@@ -7,6 +7,7 @@ use App\Sample;
 use App\Uom;
 use App\TestItem;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class TestItemController extends Controller
 {
@@ -27,6 +28,10 @@ class TestItemController extends Controller
      */
     public function create()
     {
+        if(Uom::all()->count() == 0) {
+            Session::flash('error', 'You need a Unit of Measurement to add an Test Item');
+            return redirect()->route('uom.create');
+        }
         return view('testitem.create')->with(['samples' => Sample::all()])->with(['uoms' => Uom::all()]);
     }
 

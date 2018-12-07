@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Add a Lab
+@endsection
+
 @section('content')
 
 <form action="{{route('lab.store')}}" method="post">
