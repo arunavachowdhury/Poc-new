@@ -14,4 +14,10 @@ class ISStandard extends Model
     public function sample() {
         return $this->belongsTo(Sample::class);
     }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
+
 }

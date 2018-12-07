@@ -58,6 +58,7 @@ class TestController extends Controller
             'customer_name' => $customer->name,
             'sample_id' => $sample->id,
             'sample_name' => $sample->name,
+            'is_standard_id'=> $request->isstandard_id,
             'sample_received_on' => $request->sample_received_on,
             'sample_reference_no' => $request->sample_reference_no,
         ]);
@@ -93,11 +94,13 @@ class TestController extends Controller
         $testItems = $test->jobs()->with('testItem')->get()->pluck('testItem');
         $sample = $test->sample;
         $customer = $test->customer;
+        $isStandard = $test->isStandard;
 
         return view('test.show')->with(['test'=> $test,
                                         'jobs'=> $jobs,
                                         'sample'=> $sample,
-                                        'customer'=> $customer]);
+                                        'customer'=> $customer,
+                                        'isStandard'=> $isStandard]);
 
     }
 
@@ -151,6 +154,13 @@ class TestController extends Controller
      * 
      * 
      */
+
+    public function registeredTests() {
+        $registereds = DB::table('tests')->where('status', 'registered')->orderBy('created_at', 'desc')->get();
+        return view('test.registereds')->with(['registereds' => $registereds]);
+    }
+
+
     public function register($id) {
         $test = Test::findOrFail($id);
         if($test->status == 'draft' || $test->status == 'Draft') {

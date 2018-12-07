@@ -24,6 +24,8 @@ Route::resource('customer', 'CustomerController')->middleware('auth');
 
 Route::resource('test', 'TestController')->middleware('auth');
 Route::get('/drafts', 'TestController@drafts')->middleware('auth')->name('test.drafts');
+Route::get('/registerd/tests', 'TestController@registeredTests')->middleware('auth')->name('registered.tests');
+
 Route::get('/test/register/{id}', 'TestController@register')->middleware('auth')->name('test.regsiter');
 
 Route::resource('lab', 'LabController');

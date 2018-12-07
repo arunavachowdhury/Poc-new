@@ -55,6 +55,9 @@
                         <b>Product/Sample desciption:</b> {{$sample->description}}
                     </li>
                     <li class="list-group-item list-group-item-action">
+                        <b>IS Standard:</b> {{$isStandard->value}}
+                    </li>
+                    <li class="list-group-item list-group-item-action">
                         <b>Sample recieved on:</b> {{$test->sample_received_on}}
                     </li>
                     <li class="list-group-item list-group-item-action">
