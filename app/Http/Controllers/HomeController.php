@@ -47,12 +47,6 @@ class HomeController extends Controller
         ->limit(3)
         ->get();
 
-        // $myJobs = DB::table('jobs')
-        // ->where('user_id', Auth::user()->id)
-        // ->orderBy('created_at', 'desc')
-        // ->limit(3)
-        // ->get();
-
         $myTests = Auth::user()
                         ->jobs()
                         ->with('test')

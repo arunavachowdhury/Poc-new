@@ -52,6 +52,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{route('test.create')}}">Customer already Registered?</a></li>
                     <li><a href="{{route('customer.create')}}">New Customer</a></li>
+                    <li><a href="{{route('test.index')}}">Show All Tests</a></li>
                 </ul>
             </li>
             <!-- Review -->
