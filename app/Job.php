@@ -32,4 +32,9 @@ class Job extends Model
     {
         return $this->belongsTo(TestItem::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -47,15 +47,17 @@ class HomeController extends Controller
         ->limit(3)
         ->get();
 
-        $myJobs = DB::table('jobs')
-        ->where('user_id', Auth::user()->id)
-        ->orderBy('created_at', 'desc')
-        // ->limit(10)
-        ->get();
-
+        $myTests = Auth::user()
+                        ->jobs()
+                        ->with('test')
+                        ->get()
+                        ->pluck('test')
+                        ->unique('id')
+                        ->values();
+        // dd($myJobs);
         return view('includes.dashboard')
-        ->with(['drafts' => $drafts])
-        ->with(['registereds' => $registereds])
-        ->with(['myJobs' => $myJobs]);
+                    ->with(['drafts' => $drafts])
+                    ->with(['registereds' => $registereds])
+                    ->with(['myTests' => $myTests]);
     }
 }
