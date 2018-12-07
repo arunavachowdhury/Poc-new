@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ISStandard;
 use App\Sample;
+use Session;
 
 class ISStandardController extends Controller
 {
@@ -25,6 +26,10 @@ class ISStandardController extends Controller
      */
     public function create()
     {
+        if(Sample::all()->count() == 0) {
+            Session::flash('error', 'You need a Sample/Product to add an IS Standard');
+            return redirect()->route('sample.create');
+        }
         return view('isstandard.create')->with(['samples' => Sample::all()]);
     }
 

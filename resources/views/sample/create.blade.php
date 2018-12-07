@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Add a Sample/Product
+@endsection
+
 @section('content')
 <div class="row">
 <div class="masonry-sizer col-md-12">

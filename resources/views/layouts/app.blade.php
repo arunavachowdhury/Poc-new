@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <style>#loader{transition:all .3s ease-in-out;opacity:1;visibility:visible;position:fixed;height:100vh;width:100%;background:#fff;z-index:90000}#loader.fadeOut{opacity:0;visibility:hidden}.spinner{width:40px;height:40px;position:absolute;top:calc(50% - 20px);left:calc(50% - 20px);background-color:#333;border-radius:100%;-webkit-animation:sk-scaleout 1s infinite ease-in-out;animation:sk-scaleout 1s infinite ease-in-out}@-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)}100%{-webkit-transform:scale(1);opacity:0}}@keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}</style>
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -102,8 +103,17 @@
     </div>
     <script type="text/javascript" src="{{asset('js/vendor.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bundle.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
+    <script>
+        @if(Session::has('error'))
+            toastr.warning('{{Session::get('error')}}');
+        @endif
+        @if(Session::has('success'))
+            toastr.warning('{{Session::get('success')}}');
+        @endif
+    </script>
     @stack('scripts')
 </body>
-<!-- Mirrored from colorlib.com/polygon/adminator/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Dec 2018 06:31:26 GMT -->
 
 </html>
