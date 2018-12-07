@@ -135,4 +135,14 @@ class TestItemController extends Controller
             return response()->json(['data' => '', 'code' => 404]); 
         } 
     }
+
+    public function testItemShow($id)
+    {
+        $testItems = DB::table('test_items')->where('isstandard_id', $id);
+        if(empty($testItems)) {
+            return response()->json(['data' => '', 'code' => 404]);
+        } else {
+            return response()->json(['data' => $testItems]);
+        }
+    }
 }

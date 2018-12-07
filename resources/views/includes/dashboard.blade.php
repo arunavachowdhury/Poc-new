@@ -120,7 +120,7 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="ta-c bdT w-100 p-20"><a href="#">Check all</a></div>
+            <div class="ta-c bdT w-100 p-20"><a href="{{route('user.jobs')}}">Check all</a></div>
         </div>
     </div>
 </div>
