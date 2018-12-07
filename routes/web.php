@@ -1,5 +1,6 @@
 <?php
 
+use App\ISStandard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/tester',function(){
+//     return ISStandard::findOrFail(2)->testItems;
+// });
 
 Route::resource('uom', 'UomController')->middleware(['admin', 'director']);
 
@@ -37,3 +41,5 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middlew
 
 Route::get('/test/allocate/{id}', 'TestController@allocateView')->name('allocate.get');
 Route::post('/test/allocate', 'TestController@allocateAction')->name('allocate');
+
+Route::get('/user/jobs', 'UserController@myJobs')->name('user.jobs');

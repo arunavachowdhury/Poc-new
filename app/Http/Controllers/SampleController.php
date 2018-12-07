@@ -62,6 +62,8 @@ class SampleController extends Controller
 
         $isstandards = $sample->ISStandards;
 
+        // $testItems = $isstandards->testItems;
+        // dd($testItems);
         $testItems = $sample->TestItems;
 
         return view('sample.show')->with(['sample' => $sample, 'isstandards' => $isstandards, 'testItems' => $testItems]);

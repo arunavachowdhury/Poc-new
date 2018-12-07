@@ -25,7 +25,7 @@
     <div class="mT-30">
         <ul class="list-group">
             @foreach($isstandards as $isstandard)
-            <li class="list-group-item list-group-item-action">{{$isstandard->value}}</li>
+            <li class="list-group-item list-group-item-action" value="{{$isstandard->id}}" id=isstandard_id>{{$isstandard->value}}</li>
             @endforeach
         </ul>
     </div>
@@ -58,3 +58,22 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+
+<script>
+
+$(document).ready(function){
+    $(#isstandard_id).on('click',function(){
+        var value = $(this).val();
+
+        $.get("http://127.0.0.1:8000/api/test_items_show/" + value, function (data){
+            var content = '';
+            
+        });
+    });
+}
+
+</script>
+
+@endpush
