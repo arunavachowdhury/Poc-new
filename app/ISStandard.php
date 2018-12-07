@@ -20,4 +20,10 @@ class ISStandard extends Model
         return $this->hasMany(Test::class);
     }
 
+    public function testItems()
+    {
+        return $this->hasMany(TestItem::class);
+    }
+
+
 }

@@ -29,4 +29,9 @@ class TestItem extends Model
     {
         return $this->hasOne(Job::class);
     }
+
+    public function ISStandard()
+    {
+        return $this->belongsTo(ISStandard::class);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\ISStandard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,3 +37,5 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middlew
 Route::get('/test/allocate/{id}', 'TestController@allocateView')->name('allocate.get');
 Route::post('/test/allocate', 'TestController@allocateAction')->name('allocate');
 Route::get('/report', 'TestController@report')->name('test.report');
+
+Route::get('/user/jobs', 'UserController@myJobs')->name('user.jobs');

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ISStandard;
-use App\Sample;
-use Session;
+use Illuminate\Support\Facades\Auth;
 
-class ISStandardController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class ISStandardController extends Controller
      */
     public function index()
     {
-        return view('isstandard.index')->with(['samples' => ISStandard::all()]);
+        //
     }
 
     /**
@@ -26,11 +24,7 @@ class ISStandardController extends Controller
      */
     public function create()
     {
-        if(Sample::all()->count() == 0) {
-            Session::flash('error', 'You need a Sample/Product to add an IS Standard');
-            return redirect()->route('sample.create');
-        }
-        return view('isstandard.create')->with(['samples' => Sample::all()]);
+        //
     }
 
     /**
@@ -41,20 +35,7 @@ class ISStandardController extends Controller
      */
     public function store(Request $request)
     {
-        $rule = [
-            'value' => 'required',
-            'sample_id' => 'required'
-        ];
-
-        $this->validate($request, $rule);
-
-        $isstandard = ISStandard::create([
-            'value' => $request->value,
-            'sample_id' => $request->sample_id
-        ]);
-        
-        // dd($isstandard);
-        return redirect()->route('sample.show', ['id' => $isstandard->sample_id]);
+        //
     }
 
     /**
@@ -65,9 +46,7 @@ class ISStandardController extends Controller
      */
     public function show($id)
     {
-        // $isstandard = ISStandard::findOrFail($id);
-        // $testItems = $isstandard->testItems;
-        // dd($testItems);
+        //
     }
 
     /**
@@ -102,5 +81,18 @@ class ISStandardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function myJobs()
+    {
+        $myTests = Auth::user()
+                    ->jobs()
+                    ->with('test')
+                    ->get()
+                    ->pluck('test')
+                    ->unique('id')
+                    ->values();
+
+        return view('test.userjobs')->with('myTests', $myTests);
     }
 }

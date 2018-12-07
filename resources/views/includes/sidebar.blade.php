@@ -30,6 +30,19 @@
                     <li><a href="{{route('sample.index')}}">Product / Material of Test</a></li>
                     <li><a href="{{route('sample.create')}}">+ Add Product / Material of Test</a></li>
                     <li><a href="{{route('isstandard.create')}}">+ Add IS Standard to Product / Material of Test</a></li>
+                    <li><a href="{{route('uom.create')}}">+ Add Unit Of Measurement for Tests</a></li>
+                </ul>
+            </li>
+            <!-- Lab -->
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>
+                    <span class="title">Lab</span>
+                    <span class="arrow"><i class="ti-angle-right"></i></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{route('lab.index')}}"> Labs</a></li>
+                    <li><a href="{{route('lab.create')}}"> +Add Lab </a></li>
                 </ul>
             </li>
             <!-- Test Item -->
@@ -72,8 +85,8 @@
                     <span class="arrow"><i class="ti-angle-right"></i></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="google-maps.html">Assign a job</a></li>
-                    <li><a href="google-maps.html">See your jobs</a></li>
+                    <li><a href="{{route('test.index')}}">Assign a job</a></li>
+                    <li><a href="{{route('user.jobs')}}">See your jobs</a></li>
                 </ul>
             </li>
         </ul>
