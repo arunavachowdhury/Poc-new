@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{$lab->name}}
+@endsection
+
 @section('content')
 
 <div class="container">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
+use Session;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Sample;
@@ -31,7 +32,15 @@ class TestController extends Controller
      */
     public function create()
     {
-        return view('test.create')->with(['customers'=> Customer::all(), 'samples' => Sample::all(),'tests'=> Test::all()]);
+        if(Customer::all()->count() == 0) {
+            Session::flash('error', 'You need a Customer to add a Test');
+            return redirect()->route('customer.create');
+        }
+        if(Sample::all()->count() == 0) {
+            Session::flash('error', 'You need a Sample to add a Test');
+            return redirect()->route('customer.create');
+        }
+        return view('test.create')->with(['customers'=> Customer::all(), 'samples' => Sample::all()]);
     }
 
     /**
@@ -95,6 +104,8 @@ class TestController extends Controller
         $sample = $test->sample;
         $customer = $test->customer;
         $isStandard = $test->isStandard;
+
+        // Session::flash('error', 'oyy');
 
         return view('test.show')->with(['test'=> $test,
                                         'jobs'=> $jobs,
@@ -177,6 +188,12 @@ class TestController extends Controller
      */
     public function allocateView($id) {
         $test = Test::findOrFail($id);
+
+        if(Lab::all()->count() == 0) {
+            Session::flash('error', 'You need a Lab to allocate a Job');
+            return redirect()->route('lab.create');
+        }
+
         $testJobs = DB::table('jobs')->where('test_id', $test->id)->get();
         return view('test.allocate')
         ->with(['test' => $test])

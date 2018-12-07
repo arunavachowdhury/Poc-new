@@ -121,7 +121,7 @@
                                 <div class="hidden">
                                     <br>
                                     <div class="form-group"><input class="form-control final_value_feild" type="text"></div>
-                                    <div class="form-group"><button class="btn btn-warning final_fill_up_btn" type="button">Submit</button></div>
+                                    <div class="form-group"><button class="btn btn-success final_fill_up_btn" type="button">Submit</button></div>
                                 </div>
                             </td>
                         </tr>
