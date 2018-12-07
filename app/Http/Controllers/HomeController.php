@@ -50,7 +50,7 @@ class HomeController extends Controller
         $myJobs = DB::table('jobs')
         ->where('user_id', Auth::user()->id)
         ->orderBy('created_at', 'desc')
-        ->limit(3)
+        // ->limit(10)
         ->get();
 
         return view('includes.dashboard')
