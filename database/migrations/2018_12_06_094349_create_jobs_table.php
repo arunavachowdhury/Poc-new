@@ -29,6 +29,7 @@ class CreateJobsTable extends Migration
             $table->string('specified_range_to');
             $table->float('observed_value')->nullable();
             $table->string('is_new');
+            $table->string('in_range')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
 
