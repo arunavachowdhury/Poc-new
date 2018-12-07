@@ -27,21 +27,25 @@
                         <b>Test status :</b>
                         <div style="display:inline; margin-left: 5px" class="peer">
                             @switch($test->status)
-                                @case('draft')
-                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-warning">Draft copy, Click to regsiter</a>
-                                @break
-                                @case('registered')
-                                    <a href="{{route('allocate.get', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered, allocate job</a>
-                                @break
-                                @case('in_progress')
-                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">In Progress</a>
-                                @break
-                                @case('allocated')
-                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-secondary">Sent to Lab</a>
-                                @break
-                                @case('completed')
-                                    <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-success">Completed</a>
-                                @break                                    
+                            @case('draft')
+                            <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-warning">Draft
+                                copy, Click to regsiter</a>
+                            @break
+                            @case('registered')
+                            <a href="{{route('allocate.get', ['id' => $test->id])}}" class="btn cur-p btn-primary">Registered,
+                                allocate job</a>
+                            @break
+                            @case('in_progress')
+                            <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-primary">In
+                                Progress</a>
+                            @break
+                            @case('allocated')
+                            <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-secondary">Sent
+                                to Lab</a>
+                            @break
+                            @case('completed')
+                            <a href="{{route('test.regsiter', ['id' => $test->id])}}" class="btn cur-p btn-success">Completed</a>
+                            @break
                             @endswitch
                         </div>
                     </li>
@@ -58,7 +62,7 @@
                         <b>Sample recieved on:</b> {{$test->sample_received_on}}
                     </li>
                     <li class="list-group-item list-group-item-action">
-                        <b>Sample disposal date:</b> 
+                        <b>Sample disposal date:</b>
                     </li>
                     <!-- <li class="list-group-item list-group-item-action">
                         <b>Price: {{$test->price}} </b> 
@@ -83,21 +87,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($jobs as $job)
+                        @foreach($jobs as $job)
                         <tr>
                             <td>{{$job->testItem->name}}</td>
                             <!-- <td></td> -->
-                            <td>{{$job->specified_range_from}} {{$job->testItem->uom->unit}} - {{$job->specified_range_to}}
-                            {{$job->testItem->uom->unit}}</td>
-                            <td>
-                                @if(!$job->obseved_value)
-                                empty
+                            <td>{{$job->specified_range_from}} {{$job->testItem->uom->unit}} -
+                                {{$job->specified_range_to}}
+                                {{$job->testItem->uom->unit}}</td>
+                            <td class="fill_up_job_values">
+                                @if($job->observed_value)
+                                {{$job->observed_value}}
                                 @else
-                                {{$job->obseved_value}}
+                                <span>empty
+                                    &nbsp;</span>
                                 @endif
+
+                                @if($test->status == 'allocated')
+                                @if(!$job->observed_value)
+                                <button class="btn btn-primary fill_up_values">Fill up test values</button>
+                                @endif
+                                @endif
+                                <input type="hidden" value="{{$job->id}}" id="hidden_job_id">
+                                <input type="hidden" value="{{Auth::user()->id}}" id="hidden_user_id">
+                                <div class="hidden">
+                                    <div class="form-group"><input class="form-control final_value_feild" type="text"></div>
+                                    <div class="form-group"><button class="btn btn-warning final_fill_up_btn" type="button">Submit</button></div>
+                                </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -106,3 +124,43 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $(".fill_up_values").on('click', function () {
+            $(this).closest('.fill_up_job_values').find('span').hide();
+            $(this).hide();
+            $(this).closest('.fill_up_job_values').find('.hidden').show();
+        });
+
+        $(".final_fill_up_btn").click(function () {
+            var this_job_feild_value = $(this).closest('.fill_up_job_values').find('.final_value_feild')
+                .val();
+            var my_job_id = $(this).closest('.fill_up_job_values').find("#hidden_job_id").val();
+            var my_user_id = $(this).closest('.fill_up_job_values').find("#hidden_user_id").val();
+
+            if (this_job_feild_value == '' || this_job_feild_value == null) {
+                console.log('error: empty observed value value');
+            } else {               
+                $.post("http://127.0.0.1:8000/api/fill_up_observed_value/", {
+                    job_id : my_job_id,
+                    modified_by : my_user_id,
+                    observed_value : this_job_feild_value
+                }, function (data, status) {
+                    console.log(data.data);
+                    
+                    // content = '';
+                    // $.each(data.data, function (key, value) {
+                    //     content += '<option value="' + value.id + '">' + value.name +
+                    //         '</option>';
+
+                    // });
+                    // $('#user_id').html(content);
+                });
+            }
+        });
+    });
+
+</script>
+@endpush

@@ -186,12 +186,28 @@ class TestController extends Controller
             DB::table('jobs')
             ->where('id', $job->id)
             ->update(['lab_id' => $request->lab_id, 'user_id' => $request->user_id]);
-        }
-        
+        }        
         $test->status = 'allocated';
-
         $test->save();
-
         return redirect()->route('test.show', ['id' => $test->id]);
+    }
+
+    /**
+     * 
+     */
+    public function fillUpJobObservedValue(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'job_id' => 'required',
+            'modified_by' => 'required',
+            'observed_value' => 'required'
+        ]);
+
+        DB::table('jobs')
+            ->where('id', $request->job_id)
+            ->update(['modified_by' => $request->modified_by, 'observed_value' => $request->observed_value]);
+
+        $job = Job::findOrFail($request->job_id);
+
+        return response()->json(['data' => $job]);
     }
 }
