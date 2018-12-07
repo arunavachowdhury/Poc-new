@@ -99,20 +99,27 @@
                                 {{$job->testItem->uom->unit}}</td>
                             <td class="fill_up_job_values">
                                 @if($job->observed_value)
-                                {{$job->observed_value}}
+                                    <span class=
+                                        @if($job->in_range == '1')
+                                            "btn cur-p btn-success"
+                                        @else
+                                            "btn cur-p btn-danger"
+                                        @endif
+                                        >{{$job->observed_value}}
+                                    </span>
                                 @else
-                                <span id="span-{{$job->id}}" class="return_value">empty
-                                    &nbsp;</span>
+                                    <span id="span-{{$job->id}}" class="btn cur-p btn-warning">empty</span>
                                 @endif
 
                                 @if($test->status == 'allocated')
-                                @if(!$job->observed_value)
-                                <button class="btn btn-primary fill_up_values">Fill up test values</button>
-                                @endif
+                                    @if(!$job->observed_value)
+                                        <button class="btn btn-primary fill_up_values">Fill up test values</button>
+                                    @endif
                                 @endif
                                 <input type="hidden" value="{{$job->id}}" id="hidden_job_id">
                                 <input type="hidden" value="{{Auth::user()->id}}" id="hidden_user_id">
                                 <div class="hidden">
+                                    <br>
                                     <div class="form-group"><input class="form-control final_value_feild" type="text"></div>
                                     <div class="form-group"><button class="btn btn-warning final_fill_up_btn" type="button">Submit</button></div>
                                 </div>
