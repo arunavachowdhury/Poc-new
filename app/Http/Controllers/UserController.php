@@ -101,6 +101,20 @@ class UserController extends Controller
         //
     }
 
+    public function myJobs()
+    {
+        $myTests = Auth::user()
+                    ->jobs()
+                    ->with('test')
+                    ->get()
+                    ->pluck('test')
+                    ->unique('id')
+                    ->values();
+        // dd($myTests);
+
+        return view('test.userjobs')->with('myTests', $myTests);
+    }
+
     public function makeTechnician($id)
     {
         if(Auth::user()->id == $id)
@@ -127,16 +141,5 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function myJobs()
-    {
-        $myTests = Auth::user()
-                    ->jobs()
-                    ->with('test')
-                    ->get()
-                    ->pluck('test')
-                    ->unique('id')
-                    ->values();
-
-        return view('test.userjobs')->with('myTests', $myTests);
-    }
+    
 }
