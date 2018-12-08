@@ -13,6 +13,9 @@ use App\TestItem;
 use App\Job;
 use App\Lab;
 
+use PDF;
+use Carbon\Carbon;
+
 class TestController extends Controller
 {
     /**
@@ -250,7 +253,144 @@ class TestController extends Controller
     /**
      * 
      */
-    public function report() {
-        return view('test.report');
+    public function report($id) {
+
+        $test = Test::findOrFail($id);
+
+        $customer_name = $test->customer_name;
+
+        $pdf = \App::make('dompdf.wrapper');
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
+        $pdf->loadHTML($this->generatePdfContent(
+            $customer_name,
+            $test->id,
+            $test->sample_received_on,
+            $test->sample_name,
+            $test->jobs,
+            env('APP_NAME')
+        ))->setPaper('a4');
+        return $pdf->stream("Test-Order-Form");
+    }
+
+    public function generatePdfContent($customer_name, $test_no, $sample_receive_date, $sample_name,$jobs, $app_name)
+    {
+
+        $table = '';
+        $counter = 1;
+        foreach ($jobs as $job) {
+            $table .= '
+            <tr>
+                <td>'.$counter.'</td>
+                <td>'.$job['test_item_name'].'</td>
+                <td>'.$job['observed_value'].'</td>
+                <td>'.$job['specified_range_from'] .' - '. $job['specified_range_from'] .'</td>
+            </tr>
+            ';
+            $counter++;
+        }
+
+
+        $output = '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <title>TEST REPORT</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+          
+          <style>
+            html {
+                padding: 0 !important
+            }
+            h6 {
+                padding: 10px;
+            }
+            td, th {
+                border: 1px solid #000;
+                padding: 1px 2px;
+            }
+          </style>
+          
+        </head>
+        <body>
+        
+        
+        <div class="container-fluid">
+            <br><br>
+            <div class="text-center">
+              <h4 >TEST REPORT</h4> 
+            </div>
+            <br><br>
+          
+          
+        <div class="row">
+            <div class="col-sm-12">
+                <h6>  Customer name: '.$customer_name.'</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <h6>Test no.  : '.$test_no.'</h6>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-12">
+                <h6>Sample receive data  : '.$sample_receive_date.'</h6>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-12">
+                <h6>Sample name  : '.$sample_name.'</h6>
+            </div>
+          </div>
+          
+            <div class="text-center">
+              <h4><u>TEST RESULTS</u></h4> 
+              <p>The sample has been tested with the following results:-</p>
+            </div>
+            
+            <div class="row">
+            <table class="" style="Width:100%">
+            <thead>
+              <tr>
+                <th>Sl. No.</th>
+                <th>Test Item</th>
+                <th>Observed Value</th>
+                <th>Specified Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              '.$table.'
+            </tbody>
+          </table>
+          </div>
+          <br><br>
+          <br><br>
+          
+            <div class="row float-right">
+                <h6>Aglow Quality Control Laboratory Pvt. Ltd.</h6>
+            </div>
+            <br>
+            <br>
+            <div class="row float-right">
+                
+                <h6>(Authorised Singnatory)</h6>
+            </div>
+            
+        </div>
+        
+        </body>
+        </html>
+        
+        ';
+
+        return $output;
     }
 }
