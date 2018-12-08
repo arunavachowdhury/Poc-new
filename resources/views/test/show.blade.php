@@ -80,6 +80,9 @@
     <div class="col-md-12">
         <div class="bgc-white bd bdrs-3 p-20 mB-20">
             <h4 class="c-grey-900 mB-20">Specific Test Performed</h4>
+            @if($test->status == 'allocated')
+            <a class="btn btn-primary" href="{{route('test.report', ['id' => $test->id])}}">Generate report</a>
+            @endif
             <div class="mT-30">
                 <table class="table table-bordered">
                     <thead>

@@ -41,3 +41,5 @@ Route::get('/report', 'TestController@report')->name('test.report');
 
 Route::get('/user/jobs', 'UserController@myJobs')->name('user.jobs');
 // Route::post()
+
+Route::get('/report/{id}', 'TestController@report')->name('test.report');
