@@ -8,6 +8,7 @@ use App\Uom;
 use App\TestItem;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Validator;
 
 class TestItemController extends Controller
 {
@@ -43,6 +44,8 @@ class TestItemController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        
         $rule = [
             'name' => 'required',
             'sample_id' => 'required',
