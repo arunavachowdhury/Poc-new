@@ -26,6 +26,7 @@ Route::get('/drafts', 'TestController@drafts')->middleware('auth')->name('test.d
 Route::get('/registerd/tests', 'TestController@registeredTests')->middleware('auth')->name('registered.tests');
 
 Route::get('/test/register/{id}', 'TestController@register')->middleware('auth')->name('test.regsiter');
+Route::resource('user', 'UserController')->middleware(['admin', 'director']);
 
 Route::resource('lab', 'LabController');
 Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('allocate.user');
@@ -39,3 +40,4 @@ Route::post('/test/allocate', 'TestController@allocateAction')->name('allocate')
 Route::get('/report', 'TestController@report')->name('test.report');
 
 Route::get('/user/jobs', 'UserController@myJobs')->name('user.jobs');
+// Route::post()

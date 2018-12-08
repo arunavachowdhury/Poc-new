@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Validator;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.index')->with(['users'=> User::all()]);
     }
 
     /**
@@ -24,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -35,7 +37,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $rules = [
+            'name'=> 'required',
+            'email'=> 'required',
+            'password'=> 'required',
+            'usertype'=> 'required'
+        ];
+        $this->validate($request, $rules);
+        $user = User::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'password'=> bcrypt($request->password),
+            'usertype'=> $request->usertype
+        ]);
+        return route('user.show')->with('user', $user);
     }
 
     /**
