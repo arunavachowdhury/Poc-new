@@ -63,17 +63,20 @@
 
 <script>
 
-$(document).ready(function){
-    $(#isstandard_id).on('click',function(){
-        var value = $(this).val();
+// $(document).ready(function){
+//     $(#isstandard_id).on('click',function(){
+//         var value = $(this).val();
 
-        $.get("http://127.0.0.1:8000/api/test_items_show/" + value, function (data){
-            var content = '';
-            
-        });
-    });
-}
+//         $.get("http://127.0.0.1:8000/api/test_items_show/" + value, function (data){
+//             var content = '';
+//             $.each(data.data, function (index, value) {
+
+//             });
+//         });
+//     });
+// }
 
 </script>
 
 @endpush
+

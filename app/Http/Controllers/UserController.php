@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 use App\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -62,7 +63,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user.show')->with('user', $user);
     }
 
     /**
@@ -97,6 +99,32 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function makeTechnician($id)
+    {
+        if(Auth::user()->id == $id)
+        {
+            Session::flash('error', "An admin could not change himself as an Technician");
+            return redirect()->back();
+        }
+        $user = User::findOrFail($id);
+        $user->usertype = User::USER_TECHNICIAN;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function makeEmployee($id)
+    {
+        if(Auth::user()->id == $id)
+        {
+            Session::flash('error', "An admin could not change himself as an Employee");
+            return redirect()->back();
+        }
+        $user = User::findOrFail($id);
+        $user->usertype = User::USER_EMPLOYEE;
+        $user->save();
+        return redirect()->back();
     }
 
     public function myJobs()
