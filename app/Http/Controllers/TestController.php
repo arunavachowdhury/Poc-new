@@ -51,6 +51,7 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $customer = Customer::findOrFail($request->customer_id);
         $sample = Sample::findOrFail($request->sample_id);
 
