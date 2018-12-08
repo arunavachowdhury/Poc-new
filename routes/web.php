@@ -26,7 +26,7 @@ Route::get('/drafts', 'TestController@drafts')->middleware('auth')->name('test.d
 Route::get('/registerd/tests', 'TestController@registeredTests')->middleware('auth')->name('registered.tests');
 
 Route::get('/test/register/{id}', 'TestController@register')->middleware('auth')->name('test.regsiter');
-Route::resource('user', 'UserController')->middleware(['admin', 'director']);
+// Route::resource('user', 'UserController');
 
 Route::resource('lab', 'LabController');
 Route::post('lab/{id}/user/allocate/', 'LabUserController@allocateUser')->name('allocate.user');
