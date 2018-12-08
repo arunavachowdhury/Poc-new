@@ -40,4 +40,7 @@ Route::post('/test/allocate', 'TestController@allocateAction')->name('allocate')
 Route::get('/report', 'TestController@report')->name('test.report');
 
 Route::get('/user/jobs', 'UserController@myJobs')->name('user.jobs');
+Route::get('/user/{id}/technician', 'UserController@makeTechnician')->name('user.technician')->middleware(['admin', 'director']);
+Route::get('/user/{id}/employee', 'UserController@makeEmployee')->name('user.employee')->middleware(['admin', 'director']);
+
 // Route::post()

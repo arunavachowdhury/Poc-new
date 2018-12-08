@@ -6,7 +6,6 @@
 <div class="container">  
 <h2>Users</h2>  
 <div class="row">
-    @foreach($users as $user)
     <table class="table table-hover">
     <thead>
       <tr>
@@ -17,23 +16,23 @@
       </tr>
     </thead>
     <tbody>
+    @foreach($users as $user)
       <tr>
         <td>{{$user->name}}</td>
-        <td>{{$user->address}}</td>
+        <td>{{$user->email}}</td>
         <td>{{$user->usertype}}</td>
         <td>
+        <!-- <a href="route('user.show',['id'=>$user->id])" class="btn btn-primary"></a> -->
         @if($user->usertype == "employee")
-        <a href="#" class="btn btn-primary">Make Technician</a>
-
+        <a href="{{route('user.technician',['id'=> $user->id])}}" class="btn btn-primary">Make Technician</a>
         @else($user->usertype == "technician")
-        <a href="#" class="btn btn-primary">Make Employee</a>
-
+        <a href="{{route('user.employee',['id'=> $user->id])}}" class="btn btn-primary">Make Employee</a>
         @endif
         </td>
       </tr>
+  @endforeach
     </tbody>
   </table>
-  @endforeach
   </div>
 </div>
 
